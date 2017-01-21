@@ -1,0 +1,109 @@
+<div id="mail" class="page-layout carded fullwidth single-scroll" layout="row">
+
+    <!-- TOP BACKGROUND -->
+    <div class="top-bg md-accent-bg"></div>
+    <!-- / TOP BACKGROUND -->
+
+    <!-- CENTER -->
+    <div class="center" layout="column" flex>
+
+        <!-- CONTENT HEADER -->
+        <div class="header" layout="row" layout-align="start center">
+
+            <div class="search-wrapper md-whiteframe-4dp" layout="row" layout-align="start center" flex>
+                <div class="search" flex layout="row" layout-align="start center">
+                    <md-icon md-font-icon="icon-magnify" class="icon s24"></md-icon>
+                    <input flex ng-model="vm.query.filter" type="text" placeholder="Search for Department Name" >
+                </div>
+            </div>
+
+        </div>
+        <!-- / CONTENT HEADER -->
+
+        <!-- CONTENT CARD -->
+        <div class="content-card">
+
+            <!-- CONTENT TOOLBAR -->
+            <div class="toolbar" layout="row" layout-align="space-between center">
+                <div layout="row" layout-align="start center"><span>COMPLAINT LISTS</span></div>
+                <div layout="row" layout-align="start center"><md-button class="md-raised md-teal-500-bg white-fg pull-left" ng-if="!vm.role_type"  aria-label="Add New DEPARTMENT" ng-click="vm.OpenAddDialog($event)">ADD NEW COMPLAINT</md-button>
+                </div>
+            </div>
+            <!-- / CONTENT TOOLBAR -->
+
+            <!-- CONTENT -->
+            <md-content class="content" ms-scroll>
+
+               <md-table-container>
+                  <table md-table md-progress="promise">
+                    <thead md-head md-order="vm.query.order" md-on-reorder="vm.getComplaints">
+                      <tr md-row>
+                        <th md-column md-order-by="order"><span>Client Name</span></th>
+                        <th md-column><span>Type of Establishment</span></th>
+                        <th md-column><span>Details</span></th>
+                        <th md-column><span>Location</span></th>
+                        <th md-column><span>Date</span></th>
+                        <th md-column><span>Status</span></th>
+                      </tr>
+                    </thead>
+                    <tbody md-body>
+                      <tr md-row ng-repeat="complaint in vm.complaints.data">
+                        <td md-cell>
+                            <!-- editable username (text with validation) -->
+                            <a href="#" e-aria-label="Row 1"  editable-textarea="complaint.client_name" e-name="client_name" onbeforesave="vm.save('client_name',$data, complaint.complaint_id)" e-rows="3" e-cols="40" e-name="position_name">
+                              {{ complaint.client_name || 'empty' }}
+                            </a>
+                        </td>
+                         <td md-cell>
+                            <!-- editable group (select-remote) -->
+                            <a href="#" e-aria-label="Row 2" editable-select="complaint.type_est_id" e-name="type_est_id" onshow="vm.loadEstablishments()" e-ng-options="g.type_est_id as g.type_est_name for g in vm.establishments" onbeforesave="vm.save('type_est_id',$data, complaint.complaint_id)">
+                              {{ vm.showEstablishment(complaint) }}
+                            </a>
+                        </td>
+                        <td md-cell>
+                            <!-- editable username (text with validation) -->
+                            <a href="#" e-aria-label="Row 3" editable-textarea="complaint.details" e-rows="3" e-cols="40" onbeforesave="vm.save('details',$data, complaint.complaint_id)">
+                              {{ complaint.details || 'empty' }}
+                            </a>
+                        </td>
+                        <td md-cell>
+                            <!-- editable username (text with validation) -->
+                            <a href="#" e-aria-label="Row 4" editable-textarea="complaint.location" e-rows="3" e-cols="40" e-name="location" onbeforesave="vm.save('location',$data, complaint.complaint_id)">
+                              {{ complaint.location || 'empty' }}
+                            </a>
+                        </td>
+                        <td md-cell>
+                           <a href="#" e-aria-label="Row 5" editable-combodate="complaint.complaint_date" e-name="complaint_date" onbeforesave="vm.save('complaint_date',$data, complaint.complaint_id)" e-data-format="DD-MM-YYYY HH:mm">
+                            {{ (complaint.complaint_date | date:"medium" ) || 'empty' }}
+                           </a>
+                        </td>
+                        <td md-cell>
+                            <md-button class="md-raised md-warn"  aria-label="EDIT Status Pending" ng-show="complaint.status == 1" ng-click="vm.save('status',2,complaint.complaint_id)">PENDING</md-button>
+                            <md-button class="md-raised md-primary"  aria-label="EDIT Status Cleared" ng-show="complaint.status == 2" ng-click="vm.save('status',1,complaint.complaint_id)">CLEARED</md-button>
+                        </td>
+                        <!--
+                        <td md-cell>
+                            <form editable-form name="rowform" onbeforesave="vm.save($data, complaint.complaint_id)" ng-show="rowform.$visible"  shown="inserted == complaint">
+                            <md-button type="submit" class="md-raised md-accent"   aria-label="Save Position" ng-show="rowform.$visible" ng-disabled="rowform.$waiting">SAVE</md-button>
+                            <md-button class="md-raised md-primary"  aria-label="CANCEL Position" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()">Cancel</md-button>
+                            </form>
+                            <md-button class="md-raised md-primary"  aria-label="EDIT Position" ng-show="!rowform.$visible" ng-click="rowform.$show()">EDIT</md-button>
+                        </td>
+                        -->
+                      </tr>
+                    </tbody>
+                  </table>
+                </md-table-container>
+                
+                <md-table-pagination md-limit="vm.query.limit" md-limit-options="[5, 10, 20 , 50 , 100]" md-page="vm.query.page" md-total="{{vm.complaints.count}}" md-on-paginate="vm.getComplaints" md-page-select></md-table-pagination>
+
+            </md-content>
+            <!-- / CONTENT -->
+
+        </div>
+        <!-- / CONTENT CARD -->
+
+    </div>
+    <!-- / CENTER -->
+
+</div>

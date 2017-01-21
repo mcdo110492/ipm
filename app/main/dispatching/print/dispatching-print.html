@@ -1,0 +1,70 @@
+<div id="print-area" style='position: absolute; left: 60px; top: 75px; bottom: 0; overflow: auto; width: 500px;font-family: "Times New Roman", Times, serif;font-size:10px;'>
+  <br><br><br>
+    <div ng-repeat="dispatch in pvm.dispatching">
+     
+      <center><h1>TRIP TICKET</h1></center>
+      <table  border="1" style="border-collapse: collapse;" width="100%">
+        <tbody>
+          <tr>
+            <td style="width:60px">Trip Ticket Code</td>
+            <td style="width:225px">:&emsp;{{dispatch.trip_ticket_code}}</td>
+          </tr>
+          <tr>
+            <td>Dispatch Time</td>
+            <td style="width:100px">:&emsp;{{dispatch.dispatch_time}}</td>
+          </tr>
+          <tr>
+            <td style="width:60px">Dispatch Date</td>
+            <td style="width:225px">:&emsp;{{dispatch.dispatch_time}}</td>
+           
+          </tr>
+           <tr>
+            <td style="width:60px">Shift</td>
+            <td style="width:225px">:&emsp;{{dispatch.shift}}</td>
+           
+          </tr>
+            <tr>
+            <td style="width:60px">Route</td>
+            <td style="width:225px">:&emsp;{{dispatch.geofence_id}}</td>
+           
+          </tr>
+          
+           <tr>
+            <td style="width:60px">Equipment</td>
+            <td style="width:225px">:&emsp;{{dispatch.equipment_code}} - {{dispatch.equipment_name}}</td>
+           
+          </tr>
+           <tr>
+            <td style="width:60px">Items</td>
+            <td style="width:225px">:&emsp;{{dispatch.item_code}} - {{dispatch.item_name}} </td>
+           
+          </tr>
+            <tr>
+            <td style="width:60px">Gadget</td>
+            <td style="width:225px">:&emsp;{{dispatch.gadget_code}} - {{dispatch.gadget_name}}</td>
+           
+          </tr>
+            <tr>
+            <td style="width:60px">Driver</td>
+            <td style="width:225px">:&emsp;{{dispatch.employee_id}}</td>
+           
+          </tr>
+            <tr>
+            <td style="width:60px">Garbage Collectors</td>
+            <td style="width:225px">:&emsp;{{dispatch.employee_id}}</td>
+           
+          </tr>
+
+            <tr>
+            <td style="width:60px">Dispatcher</td>
+            <td style="width:225px">:&emsp;{{dispatch.employee_id}}</td>
+           
+          </tr>
+        </tbody>
+      </table>
+      <br>
+      <center>
+     
+   
+</div>
+</div>

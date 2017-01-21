@@ -1,0 +1,75 @@
+<div id="mail" class="page-layout carded fullwidth single-scroll" layout="row">
+
+    <!-- TOP BACKGROUND -->
+    <div class="top-bg md-accent-bg"></div>
+    <!-- / TOP BACKGROUND -->
+
+    <!-- CENTER -->
+    <div class="center" layout="column" flex>
+
+        <!-- CONTENT HEADER -->
+        <div class="header" layout="row" layout-align="start center">
+
+            <div class="search-wrapper md-whiteframe-4dp" layout="row" layout-align="start center" flex>
+                <div class="search" flex layout="row" layout-align="start center">
+                    <md-icon md-font-icon="icon-magnify" class="icon s24"></md-icon>
+                    <input flex ng-model="vm.query.filter" type="text" placeholder="Search for Violation" >
+                </div>
+            </div>
+
+        </div>
+        <!-- / CONTENT HEADER -->
+
+        <!-- CONTENT CARD -->
+        <div class="content-card">
+
+            <!-- CONTENT TOOLBAR -->
+            <div class="toolbar" layout="row" layout-align="space-between center">
+                <div layout="row" layout-align="start center"><span>VIOLATION LISTS</span></div>
+                <div layout="row" layout-align="start center"><md-button class="md-raised md-teal-500-bg white-fg pull-left"  aria-label="Add New VIOLATION" ng-click="vm.OpenAddDialog($event)">ADD NEW VIOLATION</md-button>
+                </div>
+            </div>
+            <!-- / CONTENT TOOLBAR -->
+
+            <!-- CONTENT -->
+            <md-content class="content" ms-scroll>
+
+               <md-table-container>
+                  <table md-table md-progress="promise">
+                    <thead md-head md-order="vm.query.order" md-on-reorder="vm.getViolations">
+                      <tr md-row>
+                        <th md-column md-order-by="order"><span>Violation</span></th>
+                        <th md-column><span>Action</span></th>
+                      </tr>
+                    </thead>
+                    <tbody md-body>
+                      <tr md-row ng-repeat="violation in vm.violations.data">
+                        <td md-cell>
+                            <span e-aria-label="Input Edit" aria-label="Edit Form" e-name="violation_type" editable-text="violation.violation_type" e-form="rowform">
+                            {{ violation.violation_type || 'empty' }}
+                          </span>
+                        </td>
+                        <td md-cell>
+                            <form editable-form name="rowform" onbeforesave="vm.updateData($data, violation.violation_id)" ng-show="rowform.$visible"  shown="inserted == violation">
+                            <md-button type="submit" class="md-raised md-accent"   aria-label="Save Position" ng-show="rowform.$visible" ng-disabled="rowform.$waiting">SAVE</md-button>
+                            <md-button class="md-raised md-primary"  aria-label="CANCEL Position" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()">Cancel</md-button>
+                            </form>
+                            <md-button class="md-raised md-primary"  aria-label="EDIT Position" ng-show="!rowform.$visible" ng-click="rowform.$show()">EDIT</md-button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </md-table-container>
+                
+                <md-table-pagination md-limit="vm.query.limit" md-limit-options="[5, 10, 20 , 50 , 100]" md-page="vm.query.page" md-total="{{vm.violations.count}}" md-on-paginate="vm.getViolations" md-page-select></md-table-pagination>
+
+            </md-content>
+            <!-- / CONTENT -->
+
+        </div>
+        <!-- / CONTENT CARD -->
+
+    </div>
+    <!-- / CENTER -->
+
+</div>

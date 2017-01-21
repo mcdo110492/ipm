@@ -1,0 +1,95 @@
+
+
+<md-dialog add-item-dialog class="event-form-dialog">
+  <md-dialog-content class="md-dialog-content">
+    
+    <h2 class="md-title">Employee Education</h2>
+  
+  
+    <form name="itemForm" novalidate>
+      <div layout="row">
+        <md-input-container flex>
+          <label>School Name</label>
+          <input type="text" name="school_name" ng-model="ddcvm.data.school_name" required>
+          <div ng-messages="itemForm.school_name.$error" ng-show="itemForm.school_name.$touched" role="alert">
+              <div ng-message="required">
+                <span>This is required.</span>
+              </div>
+          </div>
+        </md-input-container>
+      </div>
+      <div layout="row">
+        <md-input-container flex>
+          <label>School Address</label>
+          <input type="text" name="school_address" ng-model="ddcvm.data.school_address" required>
+          <div ng-messages="itemForm.school_address.$error" ng-show="itemForm.school_address.$touched" role="alert">
+              <div ng-message="required">
+                <span>This is required.</span>
+              </div>
+          </div>
+        </md-input-container>
+      </div>
+      <div layout="row">
+        <md-input-container flex>
+          <label>School Year</label>
+          <input type="text" name="school_year" ng-model="ddcvm.data.school_year" required>
+          <div ng-messages="itemForm.school_year.$error" ng-show="itemForm.school_year.$touched" role="alert">
+              <div ng-message="required">
+                <span>This is required.</span>
+              </div>
+          </div>
+        </md-input-container>
+      </div>
+      <div layout="row">
+        <md-input-container flex>
+          <label>Degree</label>
+          <input type="text" name="degree" ng-model="ddcvm.data.degree">
+          <div ng-messages="itemForm.degree.$error" ng-show="itemForm.degree.$touched" role="alert">
+              <div ng-message="required">
+                <span>This is required.</span>
+              </div>
+          </div>
+        </md-input-container>
+      </div>
+      <div layout="row">
+        <md-input-container flex>
+          <label>Honors/Awards</label>
+          <input type="text" name="honors_awards" ng-model="ddcvm.data.honors_awards" >
+          <div ng-messages="itemForm.honors_awards.$error" ng-show="itemForm.honors_awards.$touched" role="alert">
+              <div ng-message="required">
+                <span>This is required.</span>
+              </div>
+          </div>
+        </md-input-container>
+      </div>
+      <div layout="row">
+        <md-input-container flex>
+          <label>Major</label>
+          <input type="text" name="major" ng-model="ddcvm.data.major">
+          <div ng-messages="itemForm.major.$error" ng-show="itemForm.major.$touched" role="alert">
+              <div ng-message="required">
+                <span>This is required.</span>
+              </div>
+          </div>
+        </md-input-container>
+      </div>
+      <div layout="row">
+        <md-input-container flex>
+          <label>Minor</label>
+          <input type="text" name="minor" ng-model="ddcvm.data.minor">
+          <div ng-messages="itemForm.minor.$error" ng-show="itemForm.minor.$touched" role="alert">
+              <div ng-message="required">
+                <span>This is required.</span>
+              </div>
+          </div>
+        </md-input-container>
+      </div>
+    </form>
+  </md-dialog-content>
+
+  <md-dialog-actions>
+    <md-button class="md-raised md-primary" ng-disabled="itemForm.$invalid" ng-click="ddcvm.save()">Save</md-button>
+    <md-button class="md-raised md-warn" ng-click="ddcvm.closeDialog()">Cancel</md-button>
+  </md-dialog-actions>
+ 
+</md-dialog>

@@ -1,0 +1,116 @@
+<div layout="row" layout-wrap>
+
+    <div class="about" layout="column" flex>
+        <div class="profile-box info-box general md-whiteframe-1dp" layout="column">
+            <header class="md-accent-bg">
+                <div class="title">Family Information</div>
+            </header>
+
+            <div class="content">
+            <form name="familyForm" novalidate>
+               <div layout="row">
+                   <md-input-container flex>
+                       <label>Spouse Name</label>
+                       <input type="text" name="spouse_name" ng-model="fc.family.spouse_name">
+                       <div ng-messages="familyForm.spouse_name.$error" ng-show="familyForm.spouse_name.$touched" role="alert">
+                          <div ng-message="required">
+                            <span>This is required.</span>
+                          </div>
+                      </div>
+                   </md-input-container>
+                   <md-input-container flex>
+                       <label>Occupation</label>
+                       <input type="text" name="spouse_occupation" ng-model="fc.family.spouse_occupation">
+                       <div ng-messages="familyForm.spouse_occupation.$error" ng-show="familyForm.spouse_occupation.$touched" role="alert">
+                          <div ng-message="required">
+                            <span>This is required.</span>
+                          </div>
+                      </div>
+                   </md-input-container>
+                   <md-input-container flex>
+                       <label>Address</label>
+                       <input type="text" name="spouse_address" ng-model="fc.family.spouse_address">
+                       <div ng-messages="familyForm.spouse_address.$error" ng-show="familyForm.spouse_address.$touched" role="alert">
+                          <div ng-message="required">
+                            <span>This is required.</span>
+                          </div>
+                      </div>
+                   </md-input-container>
+               </div>
+               <div layout="row">
+                   <md-input-container flex>
+                       <label>Father Name</label>
+                       <input type="text" name="father_name" ng-model="fc.family.father_name">
+                       <div ng-messages="familyForm.father_name.$error" ng-show="familyForm.father_name.$touched" role="alert">
+                          <div ng-message="required">
+                            <span>This is required.</span>
+                          </div>
+                      </div>
+                   </md-input-container>
+                   <md-input-container flex>
+                       <label>Occupation</label>
+                       <input type="text" name="father_occupation" ng-model="fc.family.father_occupation">
+                       <div ng-messages="familyForm.father_occupation.$error" ng-show="familyForm.father_occupation.$touched" role="alert">
+                          <div ng-message="required">
+                            <span>This is required.</span>
+                          </div>
+                      </div>
+                   </md-input-container>
+                   <md-input-container flex>
+                       <label>Address</label>
+                       <input type="text" name="father_address" ng-model="fc.family.father_address">
+                       <div ng-messages="familyForm.father_address.$error" ng-show="familyForm.father_address.$touched" role="alert">
+                          <div ng-message="required">
+                            <span>This is required.</span>
+                          </div>
+                      </div>
+                   </md-input-container>
+               </div>
+               <div layout="row">
+                   <md-input-container flex>
+                       <label>Mother Name</label>
+                       <input type="text" name="mother_name" ng-model="fc.family.mother_name">
+                       <div ng-messages="familyForm.mother_name.$error" ng-show="familyForm.mother_name.$touched" role="alert">
+                          <div ng-message="required">
+                            <span>This is required.</span>
+                          </div>
+                      </div>
+                   </md-input-container>
+                   <md-input-container flex>
+                       <label>Occupation</label>
+                       <input type="text" name="mother_occupation" ng-model="fc.family.mother_occupation">
+                       <div ng-messages="familyForm.mother_occupation.$error" ng-show="familyForm.mother_occupation.$touched" role="alert">
+                          <div ng-message="required">
+                            <span>This is required.</span>
+                          </div>
+                      </div>
+                   </md-input-container>
+                   <md-input-container flex>
+                       <label>Address</label>
+                       <input type="text" name="mother_address" ng-model="fc.family.mother_address">
+                       <div ng-messages="familyForm.mother_address.$error" ng-show="familyForm.mother_address.$touched" role="alert">
+                          <div ng-message="required">
+                            <span>This is required.</span>
+                          </div>
+                      </div>
+                   </md-input-container>
+               </div>
+               <div layout="row">
+                   <md-input-container flex>
+                       <label>Children(s)</label>
+                       <input type="text" name="childrens" ng-model="fc.family.childrens">
+                       <div ng-messages="familyForm.childrens.$error" ng-show="familyForm.childrens.$touched" role="alert">
+                          <div ng-message="required">
+                            <span>This is required.</span>
+                          </div>
+                      </div>
+               </div>
+               <div layout="row" layout-align="center center">
+                   <md-button class="md-raised md-accent" ng-disabled="familyForm.$invalid" ng-if="!vm.role_type" ng-click="fc.saveChanges()">Save Changes</md-button>
+               </div>
+            </form>
+            </div>
+        </div>
+
+
+</div>

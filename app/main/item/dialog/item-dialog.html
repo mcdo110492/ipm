@@ -1,0 +1,42 @@
+
+<md-dialog add-item-dialog class="event-form-dialog">
+  <md-dialog-content class="md-dialog-content">
+    
+    <h2 class="md-title">Add Item</h2>
+  
+  
+    <form name="itemForm" novalidate>
+      <div layout="row">
+        <md-input-container flex>
+          <label>Item Code</label>
+          <input type="text" name="item_code" ng-model="ddcvm.data.item_code" required unique-data table-name="item" field-name="item_code" >
+          <div ng-messages="itemForm.item_code.$error" ng-show="itemForm.item_code.$touched" role="alert">
+              <div ng-message="required">
+                <span>This is required.</span>
+              </div>
+              <div ng-message="unique">
+                <span>This value is not available</span>
+              </div>
+          </div>
+        </md-input-container>
+      </div>
+      <div layout="row">
+        <md-input-container flex>
+          <label>Item Name</label>
+          <input type="text" name="item_name" ng-model="ddcvm.data.item_name" required>
+          <div ng-messages="itemForm.item_name.$error" ng-show="itemForm.item_name.$touched" role="alert">
+              <div ng-message="required">
+                <span>This is required.</span>
+              </div>
+          </div>
+        </md-input-container>
+      </div>
+    </form>
+    
+  </md-dialog-content>
+
+  <md-dialog-actions>
+    <md-button class="md-raised md-primary" ng-click="ddcvm.save()" ng-disabled="itemForm.$invalid">Add Item</md-button>
+    <md-button class="md-raised md-warn" ng-click="ddcvm.closeDialog()">Cancel</md-button>
+  </md-dialog-actions>
+</md-dialog>

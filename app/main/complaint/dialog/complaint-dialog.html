@@ -1,0 +1,75 @@
+
+<md-dialog add-item-dialog class="event-form-dialog">
+  <md-dialog-content class="md-dialog-content">
+    
+    <h2 class="md-title">Add Complaint</h2>
+  
+  
+    <form name="itemForm" novalidate>
+      <div layout="row">
+        <md-input-container flex>
+          <label>Client Name</label>
+          <input type="text" name="client_name" ng-model="ddcvm.data.client_name" required>
+          <div ng-messages="itemForm.client_name.$error" ng-show="itemForm.client_name.$touched" role="alert">
+              <div ng-message="required">
+                <span>This is required.</span>
+              </div>
+          </div>
+        </md-input-container>
+      </div>
+      <div layout="row">
+         <md-input-container flex>
+            <label>Type of Establishment</label>
+             <md-select name="type_est_id" placeholder="Type of Establishment" ng-model="ddcvm.data.type_est_id" md-on-open="ddcvm.loadEstablishment()" required>
+                <md-option ng-value="establishment.type_est_id" ng-repeat="establishment in ddcvm.establishments">
+                  {{establishment.type_est_name}}
+                </md-option>
+            </md-select>
+            <div ng-messages="itemForm.type_est_id.$error" ng-show="itemForm.type_est_id.$touched" role="alert">
+                <div ng-message="required">
+                  <span>This is required.</span>
+                </div>
+            </div>
+        </md-input-container>
+      </div>
+      <div layout="row">
+        <md-input-container flex>
+          <label>Details</label>
+          <input type="text" name="details" ng-model="ddcvm.data.details" required>
+          <div ng-messages="itemForm.details.$error" ng-show="itemForm.details.$touched" role="alert">
+              <div ng-message="required">
+                <span>This is required.</span>
+              </div>
+          </div>
+        </md-input-container>
+      </div>
+      <div layout="row">
+        <md-input-container flex>
+          <label>Location</label>
+          <input type="text" name="location" ng-model="ddcvm.data.location" required>
+          <div ng-messages="itemForm.location.$error" ng-show="itemForm.location.$touched" role="alert">
+              <div ng-message="required">
+                <span>This is required.</span>
+              </div>
+          </div>
+        </md-input-container>
+      </div>
+      <div layout="row">
+         <md-input-container flex>
+            <label>Complain Date</label>
+            <md-datepicker name="complaint_date" ng-model="ddcvm.data.complaint_date" placeholder="Complain Date" required></md-datepicker>
+            <div class="validation-messages" ng-messages="itemForm.complaint_date.$error" ng-show="itemForm.complaint_date.$touched" role="alert">
+              <div ng-message="valid">The entered value is not a date!</div>
+              <div ng-message="required">This date is required!</div>
+            </div>
+        </md-input-container>
+      </div>
+    </form>
+    
+  </md-dialog-content>
+
+  <md-dialog-actions>
+    <md-button class="md-primary md-raised" ng-click="ddcvm.save()" ng-disabled="itemForm.$invalid">Add Complaint</md-button>
+    <md-button class="md-raised md-warn" ng-click="ddcvm.closeDialog()">Cancel</md-button>
+  </md-dialog-actions>
+</md-dialog>

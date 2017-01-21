@@ -1,0 +1,43 @@
+
+<md-dialog add-item-dialog>
+  <md-dialog-content class="md-dialog-content">
+    
+    <h2 class="md-title">Add Position</h2>
+  
+  
+    <form name="itemForm" novalidate>
+      <div layout="row">
+          <md-input-container flex>
+            <label>Position Name</label>
+            <input type="text" name="position_name" ng-model="ddcvm.data.position_name" required>
+            <div ng-messages="itemForm.position_name.$error" ng-show="itemForm.position_name.$touched" role="alert">
+                <div ng-message="required">
+                  <span>This is required.</span>
+                </div>
+            </div>
+        </md-input-container>
+      </div>
+      <div layout="row">
+         <md-input-container flex>
+            <label>Assign to Department</label>
+             <md-select name="department_id" placeholder="Assign to Department" ng-model="ddcvm.data.department_id" md-on-open="ddcvm.loadDepartments()" required>
+                <md-option ng-value="department.department_id" ng-repeat="department in ddcvm.departments">
+                  {{department.department_name}}
+                </md-option>
+            </md-select>
+            <div ng-messages="itemForm.department_id.$error" ng-show="itemForm.department_id.$touched" role="alert">
+                <div ng-message="required">
+                  <span>This is required.</span>
+                </div>
+            </div>
+        </md-input-container>
+      </div>
+    </form>
+    
+  </md-dialog-content>
+
+  <md-dialog-actions>
+    <md-button class="md-raised md-primary" ng-click="ddcvm.save()" ng-disabled="itemForm.$invalid">Add Position</md-button>
+    <md-button class="md-raised md-warn" ng-click="ddcvm.closeDialog()">Cancel</md-button>
+  </md-dialog-actions>
+</md-dialog>

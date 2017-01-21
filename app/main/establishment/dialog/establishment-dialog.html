@@ -1,0 +1,28 @@
+
+<md-dialog add-item-dialog>
+  <md-dialog-content class="md-dialog-content">
+    
+    <h2 class="md-title">Add Establishment Type</h2>
+  
+  
+    <form name="itemForm" novalidate>
+      <div layout="row">
+          <md-input-container flex>
+            <label>Establishment Type</label>
+            <input type="text" name="type_est_name" ng-model="ddcvm.data.type_est_name" required>
+            <div ng-messages="itemForm.type_est_name.$error" ng-show="itemForm.type_est_name.$touched" role="alert">
+                <div ng-message="required">
+                  <span>This is required.</span>
+                </div>
+            </div>
+        </md-input-container>
+      </div>
+    </form>
+    
+  </md-dialog-content>
+
+  <md-dialog-actions>
+    <md-button class="md-raised md-primary" ng-click="ddcvm.save()" ng-disabled="itemForm.$invalid">Add Establishment Type</md-button>
+    <md-button class="md-raised md-warn" ng-click="ddcvm.closeDialog()">Cancel</md-button>
+  </md-dialog-actions>
+</md-dialog>

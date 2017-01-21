@@ -1,0 +1,120 @@
+
+<md-dialog add-item-dialog class="event-form-dialog">
+<form name="itemForm" novalidate>
+  <md-dialog-content class="md-dialog-content">
+    
+    <h2 class="md-title">Add New Employee</h2>
+  
+      <div layout="row">
+        <md-input-container flex>
+          <label>Employee ID Number</label>
+          <input type="text" name="employee_no" ng-model="edcvm.data.employee_no" required>
+          <div ng-messages="itemForm.employee_no.$error" ng-show="itemForm.employee_no.$touched" role="alert">
+              <div ng-message="required">
+                <span>This is required.</span>
+              </div>
+          </div>
+        </md-input-container>
+      </div>
+    
+      <div layout="row">
+        <md-input-container flex>
+          <label>First Name</label>
+          <input type="text" name="firstname" ng-model="edcvm.data.firstname" required>
+          <div ng-messages="itemForm.firstname.$error" ng-show="itemForm.firstname.$touched" role="alert">
+              <div ng-message="required">
+                <span>This is required.</span>
+              </div>
+          </div>
+        </md-input-container>
+      </div>
+      <div layout="row">
+        <md-input-container flex>
+          <label>Middle Name</label>
+          <input type="text" name="middlename" ng-model="edcvm.data.middlename" required>
+          <div ng-messages="itemForm.middlename.$error" ng-show="itemForm.middlename.$touched" role="alert">
+              <div ng-message="required">
+                <span>This is required.</span>
+              </div>
+          </div>
+        </md-input-container>
+      </div>
+      <div layout="row">
+        <md-input-container flex>
+          <label>Last Name</label>
+          <input type="text" name="lastname" ng-model="edcvm.data.lastname" required>
+          <div ng-messages="itemForm.lastname.$error" ng-show="itemForm.lastname.$touched" role="alert">
+              <div ng-message="required">
+                <span>This is required.</span>
+              </div>
+          </div>
+        </md-input-container>
+      </div>
+      <div layout="row">
+         <md-input-container flex>
+            <label>Select Project First</label>
+             <md-select name="department_id" placeholder="Select Project First" ng-model="edcvm.data.department_id" md-on-open="edcvm.loadDepartments()" required>
+                <md-option ng-value="department.department_id" ng-repeat="department in edcvm.departments" ng-click="edcvm.getPosition(department.department_id)">
+                  {{department.department_name}}
+                </md-option>
+            </md-select>
+            <div ng-messages="itemForm.department_id.$error" ng-show="itemForm.department_id.$touched" role="alert">
+                <div ng-message="required">
+                  <span>This is required.</span>
+                </div>
+            </div>
+        </md-input-container>
+      </div>
+      
+      <div layout="row">
+         <md-input-container flex>
+            <label>Select Position</label>
+             <md-select name="position_id" placeholder="Select Position" ng-model="edcvm.data.position_id" required>
+                <md-option ng-value="position.position_id" ng-repeat="position in edcvm.positions">
+                  {{position.position_name}}
+                </md-option>
+            </md-select>
+            <div ng-messages="itemForm.position_id.$error" ng-show="itemForm.position_id.$touched" role="alert">
+                <div ng-message="required">
+                  <span>This is required.</span>
+                </div>
+            </div>
+        </md-input-container>
+      </div>
+
+      <div layout="row">
+         <md-input-container flex>
+            <label>Select Employment Status</label>
+             <md-select name="status_id" placeholder="Select Employment Status" ng-model="edcvm.data.status_id" md-on-open="edcvm.loadEmploymentStatus()" required>
+                <md-option ng-value="stat.status_id" ng-repeat="stat in edcvm.employment_status" >
+                  {{stat.status_type}}
+                </md-option>
+            </md-select>
+            <div ng-messages="itemForm.status_id.$error" ng-show="itemForm.status_id.$touched" role="alert">
+                <div ng-message="required">
+                  <span>This is required.</span>
+                </div>
+            </div>
+        </md-input-container>
+      </div>
+
+      <div layout="row">
+         <md-input-container flex>
+            <label>Contract Start</label>
+            <md-datepicker name="date_employed" ng-model="edcvm.data.date_employed" placeholder="Contract Start" required></md-datepicker>
+            <div class="validation-messages" ng-messages="itemForm.date_employed.$error" ng-show="itemForm.date_employed.$touched" role="alert">
+              <div ng-message="valid">The entered value is not a date!</div>
+              <div ng-message="required">This date is required!</div>
+            </div>
+        </md-input-container>
+      </div>
+    
+  </md-dialog-content>
+
+  <md-dialog-actions>
+    <md-button class="md-raised md-primary" ng-disabled="itemForm.$invalid" ng-click="edcvm.save(edcvm.data)">Save</md-button>
+
+    <md-button class="md-raised md-warn" ng-click="edcvm.closeDialog()">Cancel</md-button>
+  </md-dialog-actions>
+ </form>
+</md-dialog>

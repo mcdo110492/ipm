@@ -1,0 +1,57 @@
+<div layout="row" layout-wrap>
+
+    <div class="about" layout="column" flex>
+        <div class="profile-box info-box general md-whiteframe-1dp" layout="column">
+            <header class="md-accent-bg">
+                <div class="title">Government Issued Number</div>
+            </header>
+
+            <div class="content">
+            <form name="govtForm" novalidate>
+               <div layout="row">
+                  <md-input-container flex>
+                       <label>SSS #</label>
+                       <input type="text" name="sss" ng-model="gc.government.sss" required>
+                       <div ng-messages="govtForm.sss.$error" ng-show="govtForm.sss.$touched" role="alert" required>
+                          <div ng-message="required">
+                            <span>This is required.</span>
+                          </div>
+                      </div>
+                   </md-input-container>
+                   <md-input-container flex>
+                       <label>PHILHEALTH #</label>
+                       <input type="text" name="philhealth" ng-model="gc.government.philhealth" required>
+                       <div ng-messages="govtForm.philhealth.$error" ng-show="govtForm.philhealth.$touched" role="alert" required>
+                          <div ng-message="required">
+                            <span>This is required.</span>
+                          </div>
+                      </div>
+                   </md-input-container>
+                   <md-input-container flex>
+                       <label>PAG - IBIG #</label>
+                       <input type="text" name="pag_ibig" ng-model="gc.government.pag_ibig">
+                       <div ng-messages="govtForm.pag_ibig.$error" ng-show="govtForm.pag_ibig.$touched" role="alert" required>
+                          <div ng-message="required">
+                            <span>This is required.</span>
+                          </div>
+                      </div>
+                   </md-input-container>
+                   <md-input-container flex>
+                       <label>TIN #</label>
+                       <input type="text" name="tin" ng-model="gc.government.tin" required>
+                       <div ng-messages="govtForm.tin.$error" ng-show="govtForm.tin.$touched" role="alert">
+                          <div ng-message="required">
+                            <span>This is required.</span>
+                          </div>
+                      </div>
+                   </md-input-container>
+               </div>
+               <div layout="row" layout-align="center center">
+                   <md-button class="md-raised md-accent" ng-if="!vm.role_type" ng-disabled="govtForm.$invalid" ng-click="gc.saveChanges()">Save Changes</md-button>
+               </div>
+            </form>
+            </div>
+        </div>
+
+
+</div>

@@ -1,0 +1,28 @@
+
+<md-dialog add-item-dialog>
+  <md-dialog-content class="md-dialog-content">
+    
+    <h2 class="md-title">Add Employment Status Type</h2>
+  
+  
+    <form name="itemForm" novalidate>
+      <div layout="row" class="input-row">
+        <md-input-container flex>
+          <label>Employment Status Type</label>
+          <input type="text" name="status_type" ng-model="ddcvm.data.status_type" required>
+          <div ng-messages="itemForm.status_type.$error" ng-show="itemForm.status_type.$touched" role="alert">
+              <div ng-message="required">
+                <span>This is required.</span>
+              </div>
+          </div>
+        </md-input-container>
+      </div>
+    </form>
+    
+  </md-dialog-content>
+
+  <md-dialog-actions>
+    <md-button class="md-raised md-primary" ng-click="ddcvm.save()" ng-disabled="itemForm.$invalid">Add Employment Status Type</md-button>
+    <md-button class="md-raised md-warn" ng-click="ddcvm.closeDialog()">Cancel</md-button>
+  </md-dialog-actions>
+</md-dialog>

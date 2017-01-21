@@ -1,0 +1,42 @@
+
+
+
+
+<md-dialog add-item-dialog class="event-form-dialog">
+<form name="itemForm" novalidate>
+  <md-dialog-content class="md-dialog-content">
+    
+    <h2 class="md-title">Update Details</h2>
+  
+      <div layout="row">
+        <md-input-container flex>
+          <label>Barangay</label>
+          <input type="text" name="brgy" ng-model="ddcvm.data.brgy" required>
+          <div ng-messages="itemForm.brgy.$error" ng-show="itemForm.brgy.$touched" role="alert">
+              <div ng-message="required">
+                <span>This is required.</span>
+              </div>
+          </div>
+        </md-input-container>
+      </div>
+      <div layout="row">
+        <md-input-container flex>
+          <label>Location</label>
+          <input type="text" name="location" ng-model="ddcvm.data.location" required>
+          <div ng-messages="itemForm.location.$error" ng-show="itemForm.location.$touched" role="alert">
+              <div ng-message="required">
+                <span>This is required.</span>
+              </div>
+          </div>
+        </md-input-container>
+      </div>
+    
+  </md-dialog-content>
+
+  <md-dialog-actions>
+    <md-button class="md-raised md-accent" ng-click="ddcvm.update(ddcvm.data)">Save Changes</md-button>
+    <md-button class="md-raised md-warn" ng-click="ddcvm.closeDialog()">Cancel</md-button>
+  </md-dialog-actions>
+  </form>
+</md-dialog>
+ 

@@ -1,0 +1,42 @@
+<div layout="row" layout-wrap>
+
+    <div class="about" layout="column" flex>
+        <div class="profile-box info-box general md-whiteframe-1dp" layout="column">
+            <header class="md-accent-bg">
+                <div class="title">Trainings/Seminars</div>
+            </header>
+
+            <div class="content">
+              <md-button class="md-raised md-primary" ng-click="ts.OpenAddDialog($event)" ng-if="!vm.role_type" aria-label="Add New Trainings/Seminars">Add New Trainings/Seminars</md-button>
+              <table class="simple" ms-responsive-table>
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Nature</th>
+                        <th>Year/Period</th>
+                        <th ng-if="!vm.role_type">Actions</th>
+                    </tr>
+                </thead>
+
+                <tfoot>
+                    <tr>
+                        <td></td>
+                    </tr>
+                </tfoot>
+
+                <tbody>
+                    <tr ng-repeat="train in ts.trainings">
+                        <td class="name">{{train.training_title}}</td>
+                        <td class="position">{{train.training_nature}}</td>
+                        <td class="office">{{train.training_period}}</td>
+                        <td>
+                          <md-button ng-if="!vm.role_type" class="md-raised md-accent" ng-click="ts.openUpdate($event,train)"  aria-label="Edit">Edit</md-button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+        </div>
+
+
+</div>

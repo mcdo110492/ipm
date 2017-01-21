@@ -1,0 +1,73 @@
+
+
+
+
+<md-dialog add-item-dialog class="event-form-dialog">
+  <md-dialog-content class="md-dialog-content">
+    
+    <h2 class="md-title">Save Geofence Routes</h2>
+  
+  
+    <form name="itemForm" novalidate>
+      <div layout="row">
+        <md-input-container flex>
+          <label>Barangay</label>
+          <input type="text" name="brgy" ng-model="ddcvm.data.brgy" required>
+          <div ng-messages="itemForm.brgy.$error" ng-show="itemForm.brgy.$touched" role="alert">
+              <div ng-message="required">
+                <span>This is required.</span>
+              </div>
+          </div>
+        </md-input-container>
+      </div>
+      <div layout="row">
+        <md-input-container flex>
+          <label>Location</label>
+          <input type="text" name="location" ng-model="ddcvm.data.location" required>
+          <div ng-messages="itemForm.location.$error" ng-show="itemForm.location.$touched" role="alert">
+              <div ng-message="required">
+                <span>This is required.</span>
+              </div>
+          </div>
+        </md-input-container>
+      </div>
+          <div layout="row" flex>
+              <label>Route File (kmz,kml)</label>
+          </div>
+					<div layout="row" flex>
+                    <br>
+                    <input type="file" nv-file-select="" uploader="ddcvm.uploader" />
+					</div>
+          <div ng-repeat="item in ddcvm.uploader.queue">
+            <table>
+              <tbody>
+                  <tr>
+                    <td>Size: {{ item.file.size/1024/1024|number:2 }} MB</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="item-progress-box">
+                          <md-progress-linear md-mode="determinate" value="{{item.progress}}"></md-progress-linear>
+                          <div class="item-progress" ng-style="{ 'width': item.progress + '%' }"></div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <md-button class="md-raised md-primary" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess || itemForm.$invalid" class="md-raised md-teal-500-bg white-fg ">Add Routes</md-button>
+                      <md-button ng-click="item.cancel()" ng-disabled="!item.isUploading" class="md-raised md-primary"  aria-label="Cancel">CANCEL</md-button>
+                      <md-button ng-click="item.remove()" class="md-raised md-warn"   aria-label="Remove">REMOVE</md-button>
+                    </td>
+                  </tr>
+              </tbody>
+            </table>
+          </div>
+    </form>
+  </md-dialog-content>
+
+  <md-dialog-actions>
+    
+    <md-button class="md-raised md-warn" ng-click="ddcvm.closeDialog()">Cancel</md-button>
+  </md-dialog-actions>
+ 
+</md-dialog>

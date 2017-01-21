@@ -1,0 +1,51 @@
+
+
+<md-dialog add-item-dialog class="event-form-dialog">
+  <md-dialog-content class="md-dialog-content">
+    
+    <h2 class="md-title">Employee Traings/Seminars</h2>
+  
+  
+    <form name="item2Form" novalidate>
+      <div layout="row">
+        <md-input-container flex>
+          <label>Training/Seminar Title</label>
+          <input type="text" name="training_title" ng-model="tdcvm.data.training_title" required>
+          <div ng-messages="item2Form.training_title.$error" ng-show="item2Form.training_title.$touched" role="alert">
+              <div ng-message="required">
+                <span>This is required.</span>
+              </div>
+          </div>
+        </md-input-container>
+      </div>
+      <div layout="row">
+        <md-input-container flex>
+          <label>Training/Seminar Nature</label>
+          <input type="text" name="training_nature" ng-model="tdcvm.data.training_nature" required>
+          <div ng-messages="item2Form.training_nature.$error" ng-show="item2Form.training_nature.$touched" role="alert">
+              <div ng-message="required">
+                <span>This is required.</span>
+              </div>
+          </div>
+        </md-input-container>
+      </div>
+      <div layout="row">
+        <md-input-container flex>
+          <label>Year/Period</label>
+          <input type="text" name="training_period" ng-model="tdcvm.data.training_period" required>
+          <div ng-messages="item2Form.training_period.$error" ng-show="item2Form.training_period.$touched" role="alert">
+              <div ng-message="required">
+                <span>This is required.</span>
+              </div>
+          </div>
+        </md-input-container>
+      </div>
+    </form>
+  </md-dialog-content>
+
+  <md-dialog-actions>
+    <md-button class="md-raised md-primary" ng-disabled="item2Form.$invalid" ng-click="tdcvm.save()">Save</md-button>
+    <md-button class="md-raised md-warn" ng-click="tdcvm.closeDialog()">Cancel</md-button>
+  </md-dialog-actions>
+ 
+</md-dialog>

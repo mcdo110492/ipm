@@ -1,0 +1,83 @@
+<div id="mail" class="page-layout carded fullwidth single-scroll" layout="row">
+
+    <!-- TOP BACKGROUND -->
+    <div class="top-bg md-accent-bg"></div>
+    <!-- / TOP BACKGROUND -->
+
+    <!-- CENTER -->
+    <div class="center" layout="column" flex>
+
+        <!-- CONTENT HEADER -->
+        <div class="header" layout="row" layout-align="start center">
+
+            <div class="search-wrapper md-whiteframe-4dp" layout="row" layout-align="start center" flex>
+                <div class="search" flex layout="row" layout-align="start center">
+                    <md-icon md-font-icon="icon-magnify" class="icon s24"></md-icon>
+                    <input flex ng-model="vm.query.filter" type="text" placeholder="Search for body number, barangay, location, collection type, collection address, dispatch time" >
+                </div>
+            </div>
+
+        </div>
+        <!-- / CONTENT HEADER -->
+
+        <!-- CONTENT CARD -->
+        <div class="content-card">
+
+            <!-- CONTENT TOOLBAR -->
+            <div class="toolbar" layout="row" layout-align="space-between center">
+                <div layout="row" layout-align="start center"><span>GEOFENCE LISTS</span></div>
+                <div layout="row" layout-align="start center"><md-button class="md-raised md-teal-500-bg white-fg pull-left"  aria-label="Add New Geofence" ng-click="vm.OpenAddDialog($event)">ADD NEW GEOFENCE</md-button>
+                </div>
+            </div>
+            <!-- / CONTENT TOOLBAR -->
+
+            <!-- CONTENT -->
+            <md-content class="content" ms-scroll>
+
+               <md-table-container>
+                  <table md-table md-progress="promise">
+                    <thead md-head md-order="vm.query.order" md-on-reorder="vm.getGeofence">
+                      <tr md-row>
+                        <th md-column><span>Barangay</span></th>
+                        <th md-column><span>Location</span></th>
+                        <th md-column><span>Routes</span></th>
+                        <th md-column><span>Status</span></th>
+                        <th md-column><span>Actions</span></th>
+                      </tr>
+                    </thead>
+                    <tbody md-body>
+                      <tr md-row ng-repeat="geofence in vm.geofences.data">
+                        <td md-cell>
+                            {{geofence.brgy}}
+                        </td>
+                        <td md-cell>
+                            {{geofence.location}}
+                        </td>
+                        <td md-cell>
+                            <a ui-sref='app.geofence-maps({file_name:geofence.route_file,id:geofence.geofence_id})'>Click Here to View Map Route</a>
+                        </td>
+                        <td md-cell>
+                            <md-button class="md-raised md-warn" ng-click="vm.changeStatus(geofence.geofence_id,2)"  aria-label="EDIT Status Pending" ng-show="geofence.status == 1" >PENDING</md-button>
+                            <md-button class="md-raised md-primary" ng-click="vm.changeStatus(geofence.geofence_id,1)"  aria-label="EDIT Status Cleared" ng-show="geofence.status == 2" >CLEARED</md-button>
+                        </td>
+                        <td md-cell>
+                            <md-button class="md-raised md-accent"  aria-label="View Route" ng-click="vm.openUpdate(geofence,$event)">Update Details</md-button>
+                            <md-button class="md-raised md-accent"  aria-label="View Route" ng-click="vm.changeRoute(geofence.geofence_id,$event)">Change Route File</md-button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </md-table-container>
+                
+                <md-table-pagination md-limit="vm.query.limit" md-limit-options="[5, 10, 20 , 50 , 100]" md-page="vm.query.page" md-total="{{vm.geofences.count}}" md-on-paginate="vm.getGeofence" md-page-select></md-table-pagination>
+
+            </md-content>
+            <!-- / CONTENT -->
+
+        </div>
+        <!-- / CONTENT CARD -->
+
+    </div>
+    <!-- / CENTER -->
+
+</div>

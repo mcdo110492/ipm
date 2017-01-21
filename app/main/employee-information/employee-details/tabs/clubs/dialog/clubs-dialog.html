@@ -1,0 +1,51 @@
+
+
+<md-dialog add-item-dialog class="event-form-dialog">
+  <md-dialog-content class="md-dialog-content">
+    
+    <h2 class="md-title">Employee Clubs</h2>
+  
+  
+    <form name="item3Form" novalidate>
+      <div layout="row">
+        <md-input-container flex>
+          <label>Club Name</label>
+          <input type="text" name="club_name" ng-model="cdcvm.data.club_name" required>
+          <div ng-messages="item3Form.club_name.$error" ng-show="item3Form.club_name.$touched" role="alert">
+              <div ng-message="required">
+                <span>This is required.</span>
+              </div>
+          </div>
+        </md-input-container>
+      </div>
+      <div layout="row">
+        <md-input-container flex>
+          <label>Club Position</label>
+          <input type="text" name="club_position" ng-model="cdcvm.data.club_position" required>
+          <div ng-messages="item3Form.club_position.$error" ng-show="item3Form.club_position.$touched" role="alert">
+              <div ng-message="required">
+                <span>This is required.</span>
+              </div>
+          </div>
+        </md-input-container>
+      </div>
+      <div layout="row">
+        <md-input-container flex>
+          <label>Membership</label>
+          <input type="text" name="club_membership" ng-model="cdcvm.data.club_membership" required>
+          <div ng-messages="item3Form.club_membership.$error" ng-show="item3Form.club_membership.$touched" role="alert">
+              <div ng-message="required">
+                <span>This is required.</span>
+              </div>
+          </div>
+        </md-input-container>
+      </div>
+    </form>
+  </md-dialog-content>
+
+  <md-dialog-actions>
+    <md-button class="md-raised md-primary" ng-disabled="item3Form.$invalid" ng-click="cdcvm.save()">Save</md-button>
+    <md-button class="md-raised md-warn" ng-click="cdcvm.closeDialog()">Cancel</md-button>
+  </md-dialog-actions>
+ 
+</md-dialog>

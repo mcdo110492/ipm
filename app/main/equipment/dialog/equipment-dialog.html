@@ -1,0 +1,57 @@
+
+<md-dialog add-item-dialog class="event-form-dialog">
+  <md-dialog-content class="md-dialog-content">
+    
+    <h2 class="md-title">Add Equipment</h2>
+  
+  
+    <form name="itemForm" novalidate>
+      <div layout="row">
+        <md-input-container flex>
+          <label>Equipment Code</label>
+          <input type="text" name="equipment_code" ng-model="ddcvm.data.equipment_code" required>
+          <div ng-messages="itemForm.equipment_code.$error" ng-show="itemForm.equipment_code.$touched" role="alert">
+              <div ng-message="required">
+                <span>This is required.</span>
+              </div>
+              <div ng-message="unique">
+                <span>This value is not available</span>
+              </div>
+          </div>
+        </md-input-container>
+      </div>
+      <div layout="row">
+        <md-input-container flex>
+          <label>Equipment Name</label>
+          <input type="text" name="equipment_name" ng-model="ddcvm.data.equipment_name" required>
+          <div ng-messages="itemForm.equipment_name.$error" ng-show="itemForm.equipment_name.$touched" role="alert">
+              <div ng-message="required">
+                <span>This is required.</span>
+              </div>
+          </div>
+        </md-input-container>
+      </div>
+          <div layout="row">
+        <md-input-container flex>
+          <label>Equipment Model</label>
+          <input type="text" name="equipment_model" ng-model="ddcvm.data.equipment_model" >
+        
+        </md-input-container>
+      </div>
+          <div layout="row">
+        <md-input-container flex>
+          <label>Equipment Capacity</label>
+          <input type="text" name="equipment_capacity" ng-model="ddcvm.data.equipment_capacity" >
+          
+        </md-input-container>
+      </div>
+      
+    </form>
+    
+  </md-dialog-content>
+
+  <md-dialog-actions>
+    <md-button class="md-primary" ng-click="ddcvm.save()" ng-disabled="itemForm.$invalid">Add Equipment</md-button>
+    <md-button class="md-primary" ng-click="ddcvm.closeDialog()">Cancel</md-button>
+  </md-dialog-actions>
+</md-dialog>

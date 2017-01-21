@@ -1,0 +1,50 @@
+<div layout="row" layout-wrap>
+
+    <div class="about" layout="column" flex>
+        <div class="profile-box info-box general md-whiteframe-1dp" layout="column">
+            <header class="md-accent-bg">
+                <div class="title">Education Information</div>
+            </header>
+
+            <div class="content">
+              <md-button class="md-raised md-primary" ng-click="ec.OpenAddDialog($event,vm.info.employee_id)" ng-if="!vm.role_type" aria-label="Add New Education">Add New Education Information</md-button>
+              <table class="simple" ms-responsive-table>
+                <thead>
+                    <tr>
+                        <th>School Name</th>
+                        <th>Address</th>
+                        <th>Year</th>
+                        <th class="text-right">Degree</th>
+                        <th class="text-right">Honors/Awards</th>
+                        <th class="text-right">Major</th>
+                        <th class="text-right">Minor</th>
+                        <th class="text-right" ng-if="!vm.role_type">Actions</th>
+                    </tr>
+                </thead>
+
+                <tfoot>
+                    <tr>
+                        <td></td>
+                    </tr>
+                </tfoot>
+
+                <tbody>
+                    <tr ng-repeat="educ in ec.educations">
+                        <td class="name">{{educ.school_name}}</td>
+                        <td class="position">{{educ.school_address}}</td>
+                        <td class="office">{{educ.school_year}}</td>
+                        <td class="age text-right">{{educ.degree}}</td>
+                        <td class="start-date text-right">{{educ.honors_awards}}</td>
+                        <td class="salary text-right">{{educ.major}}</td>
+                        <td class="salary text-right">{{educ.minor}}</td>
+                        <td>
+                          <md-button class="md-raised md-accent" ng-click="ec.openUpdate($event,educ,vm.info.employee_id)" ng-if="!vm.role_type"  aria-label="Edit">Edit</md-button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+        </div>
+
+
+</div>

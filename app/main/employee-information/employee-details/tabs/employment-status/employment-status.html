@@ -1,0 +1,106 @@
+<div layout="row" layout-wrap>
+
+    <div class="about" layout="column" flex>
+        <div class="profile-box info-box general md-whiteframe-1dp" layout="column">
+            <header class="md-accent-bg">
+                <div class="title">Employment Status</div>
+            </header>
+
+            <div class="content">
+            <form name="familyForm" novalidate>
+               <div layout="row">
+                   <md-input-container flex>
+                      <label>Project</label>
+                       <md-select name="department_id" ng-model="es.employment.department_id">
+                          <md-option ng-value="department.department_id" ng-repeat="department in es.departments">
+                            {{department.department_name}}
+                          </md-option>
+                      </md-select>
+                      <div ng-messages="itemForm.department_id.$error" ng-show="itemForm.department_id.$touched" role="alert">
+                          <div ng-message="required">
+                            <span>This is required.</span>
+                          </div>
+                      </div>
+                  </md-input-container>
+                   <md-input-container flex>
+                      <label>Position</label>
+                       <md-select name="position_id" ng-model="es.employment.position_id">
+                          <md-option ng-value="position.position_id" ng-repeat="position in es.positions">
+                            {{position.position_name}}
+                          </md-option>
+                      </md-select>
+                  </md-input-container>
+               </div>
+               <div layout="row">
+                   <md-input-container flex>
+                      <label>Contract Start</label>
+                      <md-datepicker name="date_employed" ng-model="es.employment.date_employed" placeholder="Contract Start" required></md-datepicker>
+                      <div class="validation-messages" ng-messages="itemForm.date_employed.$error" ng-show="itemForm.date_employed.$touched" role="alert">
+                        <div ng-message="valid">The entered value is not a date!</div>
+                        <div ng-message="required">This date is required!</div>
+                      </div>
+                  </md-input-container>
+                  <md-input-container flex>
+                      <label>Contract End</label>
+                      <md-datepicker name="date_retired" ng-model="es.employment.date_retired" placeholder="Contract End" required></md-datepicker>
+                      <div class="validation-messages" ng-messages="itemForm.date_retired.$error" ng-show="itemForm.date_retired.$touched" role="alert">
+                        <div ng-message="valid">The entered value is not a date!</div>
+                        <div ng-message="required">This date is required!</div>
+                      </div>
+                  </md-input-container>
+                </div>
+                <div layout="row">
+                   <md-input-container flex>
+                      <label>Employment Status</label>
+                       <md-select name="status_id" ng-model="es.employment.status_id">
+                          <md-option ng-value="stat1.status_id" ng-repeat="stat1 in es.employment_status">
+                            {{stat1.status_type}}
+                          </md-option>
+                      </md-select>
+                      <div ng-messages="itemForm.status_id.$error" ng-show="itemForm.status_id.$touched" role="alert">
+                          <div ng-message="required">
+                            <span>This is required.</span>
+                          </div>
+                      </div>
+                  </md-input-container>
+                   <md-input-container flex>
+                      <label>Employee Status</label>
+                       <md-select name="employee_status_type_id" ng-model="es.employment.employee_status_type_id">
+                          <md-option ng-value="stat2.employee_status_type_id" ng-repeat="stat2 in es.employee_status">
+                            {{stat2.type}}
+                          </md-option>
+                      </md-select>
+                  </md-input-container>
+               </div>
+               <div layout="row">
+                  <md-input-container flex>
+                      <label>Salary</label>
+                      <input type="number" ng-model="es.employment.salary" name="salary">
+                      <div ng-messages="itemForm.salary.$error" ng-show="itemForm.salary.$touched" role="alert">
+                          <div ng-message="required">
+                            <span>This is required.</span>
+                          </div>
+                          <div ng-message="number">
+                            <span>Number(s) only</span>
+                          </div>
+                      </div>
+                  </md-input-container>
+                   <md-input-container flex>
+                      <label>Remarks</label>
+                      <input type="text" ng-model="es.employment.remarks" name="remarks">
+                      <div ng-messages="itemForm.remarks.$error" ng-show="itemForm.remarks.$touched" role="alert">
+                          <div ng-message="required">
+                            <span>This is required.</span>
+                          </div>
+                      </div>
+                  </md-input-container>
+               </div>
+               <div layout="row" layout-align="center center">
+                   <md-button class="md-raised md-accent" ng-if="!vm.role_type" ng-disabled="familyForm.$invalid" ng-click="es.saveChanges()">Save Changes</md-button>
+               </div>
+            </form>
+            </div>
+        </div>
+
+
+</div>

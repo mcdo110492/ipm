@@ -1,0 +1,49 @@
+<div layout="row" layout-wrap>
+
+    <div class="about" layout="column" flex>
+        <div class="profile-box info-box general md-whiteframe-1dp" layout="column">
+            <header class="md-accent-bg">
+                <div class="title">Contact Information</div>
+            </header>
+
+            <div class="content">
+            <form name="contactForm" novalidate>
+               <div layout="row">
+                  <md-input-container flex>
+                       <label>Present Address</label>
+                       <input type="text" name="present_address" ng-model="cc.contact.present_address">
+                   </md-input-container>
+                   <md-input-container flex>
+                       <label>Provincial Address</label>
+                       <input type="text" name="provincial_address" ng-model="cc.contact.provincial_address">
+                       <div ng-messages="contactForm.provincial_address.$error" ng-show="contactForm.provincial_address.$touched" role="alert">
+                          <div ng-message="required">
+                            <span>This is required.</span>
+                          </div>
+                      </div>
+                   </md-input-container>
+               </div>
+               <div layout="row">
+                  <md-input-container flex>
+                       <label>Telephone No.</label>
+                       <input type="text" name="tel_no" ng-model="cc.contact.tel_no">
+                   </md-input-container>
+                   <md-input-container flex>
+                       <label>Cellphone No.</label>
+                       <input type="text" name="cel_no" ng-model="cc.contact.cel_no">
+                       <div ng-messages="contactForm.cel_no.$error" ng-show="contactForm.cel_no.$touched" role="alert">
+                          <div ng-message="required">
+                            <span>This is required.</span>
+                          </div>
+                      </div>
+                   </md-input-container>
+               </div>
+               <div layout="row" layout-align="center center">
+                   <md-button class="md-raised md-accent" ng-if="!vm.role_type" ng-disabled="contactForm.$invalid" ng-click="cc.saveChanges()">Save Changes</md-button>
+               </div>
+            </form>
+            </div>
+        </div>
+
+
+</div>

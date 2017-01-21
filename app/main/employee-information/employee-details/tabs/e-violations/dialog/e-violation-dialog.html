@@ -1,0 +1,53 @@
+
+<md-dialog add-item-dialog class="event-form-dialog">
+  <md-dialog-content class="md-dialog-content">
+    
+    <h2 class="md-title">Add Violation</h2>
+  
+  
+    <form name="item5Form" novalidate>
+      <div layout="row">
+         <md-input-container flex>
+            <label>Violation</label>
+             <md-select name="violation_id" placeholder="Violation" ng-model="vdcvm.data.violation_id" required>
+                <md-option ng-value="violation.violation_id" ng-repeat="violation in vdcvm.violations">
+                  {{violation.violation_type}}
+                </md-option>
+            </md-select>
+            <div ng-messages="item5Form.violation_id.$error" ng-show="item5Form.violation_id.$touched" role="alert">
+                <div ng-message="required">
+                  <span>This is required.</span>
+                </div>
+            </div>
+        </md-input-container>
+      </div>
+      <div layout="row">
+         <md-input-container flex>
+            <label>Date Committed</label>
+            <md-datepicker name="date_committed" ng-model="vdcvm.data.date_committed" placeholder="Date Committed" required></md-datepicker>
+            <div class="validation-messages" ng-messages="item5Form.date_committed.$error" ng-show="item5Form.date_committed.$touched" role="alert">
+              <div ng-message="valid">The entered value is not a date!</div>
+              <div ng-message="required">This date is required!</div>
+            </div>
+        </md-input-container>
+      </div>
+      <div layout="row">
+        <md-input-container flex>
+          <label>Remarks</label>
+          <input type="text" name="remarks" ng-model="vdcvm.data.remarks">
+          <div ng-messages="item5Form.remarks.$error" ng-show="item5Form.remarks.$touched" role="alert">
+              <div ng-message="required">
+                <span>This is required.</span>
+              </div>
+          </div>
+        </md-input-container>
+      </div>
+    </form>
+    
+  </md-dialog-content>
+
+  <md-dialog-actions>
+    <md-button class="md-raised md-primary" ng-click="vdcvm.save()" ng-disabled="item5Form.$invalid">Add Violation</md-button>
+    <md-button class="md-raised md-warn" ng-click="vdcvm.closeDialog()">Cancel</md-button>
+  </md-dialog-actions>
+</md-dialog>

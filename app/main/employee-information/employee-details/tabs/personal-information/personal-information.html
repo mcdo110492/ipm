@@ -1,0 +1,111 @@
+<div layout="row" layout-wrap>
+
+    <div class="about" layout="column" flex>
+        <div class="profile-box info-box general md-whiteframe-1dp" layout="column">
+            <header class="md-accent-bg">
+                <div class="title">Personal Information</div>
+            </header>
+
+            <div class="content">
+            <form name="personalForm" novalidate>
+                <div layout="row">
+                   <md-input-container flex="66">
+                       <label>Employee Number</label>
+                       <input type="text" name="employee_no" ng-model="vm.info.employee_no" readonly>
+                   </md-input-container>
+               </div>
+               <div layout="row">
+                   <md-input-container flex>
+                       <label>First Name</label>
+                       <input type="text" name="firstname" ng-model="vm.info.firstname" required>
+                       <div ng-messages="personalForm.firstname.$error" ng-show="personalForm.firstname.$touched" role="alert">
+                          <div ng-message="required">
+                            <span>This is required.</span>
+                          </div>
+                      </div>
+                   </md-input-container>
+                   <md-input-container flex>
+                       <label>Middle Name</label>
+                       <input type="text" name="middlename" ng-model="vm.info.middlename" required>
+                       <div ng-messages="personalForm.middlename.$error" ng-show="personalForm.middlename.$touched" role="alert">
+                          <div ng-message="required">
+                            <span>This is required.</span>
+                          </div>
+                      </div>
+                   </md-input-container>
+                   <md-input-container flex>
+                       <label>Last Name</label>
+                       <input type="text" name="lastname" ng-model="vm.info.lastname" required>
+                       <div ng-messages="personalForm.lastname.$error" ng-show="personalForm.lastname.$touched" role="alert">
+                          <div ng-message="required">
+                            <span>This is required.</span>
+                          </div>
+                      </div>
+                   </md-input-container>
+               </div>
+               <div layout="row">
+                   <md-input-container>
+                       <label>Date of Birth</label>
+                       <md-datepicker name="dob" ng-model="vm.info.dob" required></md-datepicker>
+                       <div ng-messages="personalForm.dob.$error" ng-show="personalForm.dob.$touched" role="alert">
+                          <div ng-message="required">
+                            <span>This is required.</span>
+                          </div>
+                      </div>
+                   </md-input-container>
+                   <md-input-container flex>
+                       <label>Place of Birth</label>
+                       <input type="text" name="pob" ng-model="vm.info.pob">
+                   </md-input-container>
+               </div>
+               <div layout="row">
+                   <md-input-container flex>
+                       <label>Height</label>
+                       <input type="text" name="height" ng-model="vm.info.height">
+                   </md-input-container>
+                   <md-input-container flex>
+                       <label>Weight</label>
+                       <input type="text" name="weight" ng-model="vm.info.weight">
+                   </md-input-container>
+                   <md-input-container flex>
+                       <label>Blood Type</label>
+                       <input type="text" name="blood" ng-model="vm.info.blood">
+                   </md-input-container>
+                   <md-input-container flex>
+                       <label>Distinguishing Mark</label>
+                       <input type="text" name="distinguishing_mark" ng-model="vm.info.distinguishing_mark">
+                   </md-input-container>
+               </div>
+               <div layout="row">
+                   <md-input-container flex>
+                       <label>Civil Status</label>
+                       <input type="text" name="civil_status" ng-model="vm.info.civil_status" required>
+                       <div ng-messages="personalForm.civil_status.$error" ng-show="personalForm.civil_status.$touched" role="alert">
+                          <div ng-message="required">
+                            <span>This is required.</span>
+                          </div>
+                      </div>
+                   </md-input-container>
+                   <md-input-container flex>
+                       <label>Citizenship</label>
+                       <input type="text" name="citizenship" ng-model="vm.info.citizenship" required>
+                       <div ng-messages="personalForm.citizenship.$error" ng-show="personalForm.citizenship.$touched" role="alert">
+                          <div ng-message="required">
+                            <span>This is required.</span>
+                          </div>
+                      </div>
+                   </md-input-container>
+                   <md-input-container flex>
+                       <label>Religion</label>
+                       <input type="text" name="religion" ng-model="vm.info.religion">
+                   </md-input-container>
+               </div>
+               <div layout="row" layout-align="center center">
+                   <md-button class="md-raised md-accent" ng-disabled="personalForm.$invalid" ng-if="!vm.role_type" ng-click="pc.saveChanges(vm.info)">Save Changes</md-button>
+               </div>
+            </form>
+            </div>
+        </div>
+
+
+</div>

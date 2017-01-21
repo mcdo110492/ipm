@@ -1,0 +1,183 @@
+
+<md-dialog add-item-dialog class="event-form-dialog">
+  <md-dialog-content class="md-dialog-content">
+    
+    <h2 class="md-title">Add Equipment</h2>
+  
+  
+    <form name="itemForm" novalidate>
+        <div layout="row">
+        <md-input-container flex>
+          <label>Trip Ticket Code</label>
+          <input type="text" name="trip_ticket_code" ng-model="ddcvm.data.trip_ticket_code" required>
+          <div ng-messages="itemForm.trip_ticket_code.$error" ng-show="itemForm.trip_ticket_code.$touched" role="alert">
+              <div ng-message="required">
+                <span>This is required.</span>
+              </div>
+              <div ng-message="unique">
+                <span>This value is not available</span>
+              </div>
+          </div>
+        </md-input-container>
+      </div>
+        <div layout="row">
+        <md-input-container flex>
+          <label>Time Dispatch</label>
+          <input type="time" name="dispatch_time" ng-model="ddcvm.data.dispatch_time" required>
+          <div ng-messages="itemForm.dispatch_time.$error" ng-show="itemForm.dispatch_time.$touched" role="alert">
+              <div ng-message="required">
+                <span>This is required.</span>
+              </div>
+              <div ng-message="unique">
+                <span>This value is not available</span>
+              </div>
+          </div>
+        </md-input-container>
+      </div>
+        <div layout="row">
+        <md-input-container flex>
+            <label>Date</label>
+            <md-datepicker name="dispatch_date" ng-model="ddcvm.data.dispatch_date" placeholder="Date" required></md-datepicker>
+            <div class="validation-messages" ng-messages="itemForm.dispatch_date.$error" ng-show="itemForm.dispatch_date.$touched" role="alert">
+              <div ng-message="valid">The entered value is not a date!</div>
+              <div ng-message="required">This date is required!</div>
+            </div>
+        </md-input-container>
+      </div>
+    
+      <div layout="row">
+        <md-input-container flex>
+          <label>Shift</label>
+          <input type="text" name="shift" ng-model="ddcvm.data.shift" required>
+          <div ng-messages="itemForm.shift.$error" ng-show="itemForm.shift.$touched" role="alert">
+              <div ng-message="required">
+                <span>This is required.</span>
+              </div>
+          </div>
+        </md-input-container>
+      </div>
+        <div layout="row">
+        <md-input-container flex>
+          <label>Route</label>
+          <md-select name="geofence_id" placeholder="Select Route First"ng-model="ddcvm.data.geofence_id" required>
+                <md-option ng-value="geofence.geofence_id" ng-repeat="geofence in ddcvm.geofences">
+                   {{geofence.brgy}} - {{geofence.location}} 
+                </md-option>
+            </md-select>
+      
+           <div ng-messages="itemForm.geofence_id.$error" ng-show="itemForm.geofence_id.$touched" role="alert">
+              <div ng-message="required">
+                <span>This is required.</span>
+              </div>
+          </div>
+        </md-input-container>
+      </div>
+          <div layout="row">
+        <md-input-container flex>
+          <label>Equipment</label>
+        <md-select name="equipment_id" placeholder="Equipments" ng-model="ddcvm.data.equipment_id"  required>
+                <md-option value="{{equipment.equipment_id}}" ng-repeat="equipment in ddcvm.equipments">
+                    {{equipment.equipment_code}} - {{equipment.equipment_name}} 
+                </md-option>
+            </md-select>
+            <div ng-messages="itemForm.equipment_id.$error" ng-show="itemForm.equipment_id.$touched" role="alert">
+                <div ng-message="required">
+                  <span>This is required.</span>
+                </div>
+            </div>
+        </md-input-container>
+    
+      </div>
+          <div layout="row">
+         <md-input-container flex>
+            <label>Items</label>
+             <md-select name="item_id" placeholder="Items" ng-model="ddcvm.data.item_id"  required>
+                <md-option value="{{item.item_id}}" ng-repeat="item in ddcvm.items">
+            
+                     {{item.item_code}} - {{item.item_name}} 
+
+                </md-option>
+            </md-select>
+            <div ng-messages="itemForm.item_id.$error" ng-show="itemForm.item_id.$touched" role="alert">
+                <div ng-message="required">
+                  <span>This is required.</span>
+                </div>
+            </div>
+        </md-input-container>
+      </div>
+        <div layout="row">
+        <md-input-container flex>
+          <label>Gadgets</label>
+        <md-select name="gadget_id" placeholder="Gadgets" ng-model="ddcvm.data.gadget_id"  required>
+                <md-option value="{{gadget.gadget_id}}" ng-repeat="gadget in ddcvm.gadgets">
+            
+                     {{gadget.gadget_code}} - {{gadget.gadget_name}} 
+
+                </md-option>
+            </md-select>
+            <div ng-messages="itemForm.gadget_id.$error" ng-show="itemForm.gadget_id.$touched" role="alert">
+                <div ng-message="required">
+                  <span>This is required.</span>
+                </div>
+            </div>
+        </md-input-container>
+      </div>
+         <div layout="row">
+        <md-input-container flex>
+          <label>Driver</label>
+     <md-select name="employee_id" placeholder="Driver" ng-model="ddcvm.data.employee_id"  required>
+                <md-option value="{{employee.employee_id}}" ng-repeat="employee in ddcvm.employees">
+            
+                     {{employee.employee_no}} - {{employee.firstname}} -  {{employee.lastname}}
+                </md-option>
+            </md-select>
+            <div ng-messages="itemForm.employee_id.$error" ng-show="itemForm.employee_id.$touched" role="alert">
+                <div ng-message="required">
+                  <span>This is required.</span>
+                </div>
+            </div>
+        </md-input-container>
+      </div>
+      <div layout="row">
+        <md-input-container flex>
+          <label>Garbage Collectors</label>
+      <md-select name="employee_id" placeholder="Garbage Collectors" ng-model="ddcvm.data.employee_id"  required>
+                <md-option value="{{employee.employee_id}}" ng-repeat="employee in ddcvm.employees">
+            
+                     {{employee.employee_no}} - {{employee.firstname}} -  {{employee.lastname}}
+                </md-option>
+            </md-select>
+            <div ng-messages="itemForm.employee_id.$error" ng-show="itemForm.employee_id.$touched" role="alert">
+                <div ng-message="required">
+                  <span>This is required.</span>
+                </div>
+            </div>
+        </md-input-container>
+      </div>
+       <div layout="row">
+        <md-input-container flex>
+          <label>Dispatcher</label>
+            <md-select name="employee_id" placeholder="Dispatcher" ng-model="ddcvm.data.employee_id"  required>
+                <md-option value="{{employee.employee_id}}" ng-repeat="employee in ddcvm.employees">
+            
+                     {{employee.employee_no}} - {{employee.firstname}} -  {{employee.lastname}}
+                </md-option>
+            </md-select>
+            <div ng-messages="itemForm.employee_id.$error" ng-show="itemForm.employee_id.$touched" role="alert">
+                <div ng-message="required">
+                  <span>This is required.</span>
+                </div>
+            </div>
+        </md-input-container>
+      </div>
+        
+        
+    </form>
+    
+  </md-dialog-content>
+
+  <md-dialog-actions>
+    <md-button class="md-primary" ng-click="ddcvm.save()" ng-disabled="itemForm.$invalid">Add Trip Ticket</md-button>
+    <md-button class="md-primary" ng-click="ddcvm.closeDialog()">Cancel</md-button>
+  </md-dialog-actions>
+</md-dialog>

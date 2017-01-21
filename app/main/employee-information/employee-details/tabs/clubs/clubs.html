@@ -1,0 +1,42 @@
+<div layout="row" layout-wrap>
+
+    <div class="about" layout="column" flex>
+        <div class="profile-box info-box general md-whiteframe-1dp" layout="column">
+            <header class="md-accent-bg">
+                <div class="title">Clubs</div>
+            </header>
+
+            <div class="content">
+              <md-button class="md-raised md-primary" ng-click="cs.OpenAddDialog($event)" ng-if="!vm.role_type" aria-label="Add New Clubs">Add New Clubs</md-button>
+              <table class="simple" ms-responsive-table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Position</th>
+                        <th>Membership</th>
+                        <th ng-if="!vm.role_type">Actions</th>
+                    </tr>
+                </thead>
+
+                <tfoot>
+                    <tr>
+                        <td></td>
+                    </tr>
+                </tfoot>
+
+                <tbody>
+                    <tr ng-repeat="club in cs.clubs">
+                        <td class="name">{{club.club_name}}</td>
+                        <td class="position">{{club.club_position}}</td>
+                        <td class="office">{{club.club_membership}}</td>
+                        <td>
+                          <md-button class="md-raised md-accent" ng-if="!vm.role_type" ng-click="cs.openUpdate($event,club)"  aria-label="Edit">Edit</md-button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+        </div>
+
+
+</div>

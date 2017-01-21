@@ -1,0 +1,68 @@
+
+<md-dialog add-item-dialog class="event-form-dialog">
+  <md-dialog-content class="md-dialog-content">
+    
+    <h2 class="md-title">Add gadget</h2>
+  
+  
+  
+    <form name="itemForm" novalidate>
+      <div layout="row">
+        <md-input-container flex>
+          <label>Gadget Code</label>
+          <input type="text" name="gadget_code" ng-model="ddcvm.data.gadget_code" required>
+          <div ng-messages="itemForm.gadget_code.$error" ng-show="itemForm.gadget_code.$touched" role="alert">
+              <div ng-message="required">
+                <span>This is required.</span>
+              </div>
+              <div ng-message="unique">
+                <span>This value is not available</span>
+              </div>
+          </div>
+        </md-input-container>
+      </div>
+      <div layout="row">
+        <md-input-container flex>
+          <label>Gadget Name</label>
+          <input type="text" name="gadget_name" ng-model="ddcvm.data.gadget_name" required>
+          <div ng-messages="itemForm.gadget_name.$error" ng-show="itemForm.gadget_name.$touched" role="alert">
+              <div ng-message="required">
+                <span>This is required.</span>
+              </div>
+          </div>
+        </md-input-container>
+      </div>
+          <div layout="row">
+        <md-input-container flex>
+          <label>Gadget Model</label>
+          <input type="text" name="gadget_model" ng-model="ddcvm.data.gadget_model" >
+        
+        </md-input-container>
+      </div>
+          <div layout="row">
+        <md-input-container flex>
+          <label>Gadget Type</label>
+          <input type="text" name="gadget_type" ng-model="ddcvm.data.gadget_capacity" >
+          
+        </md-input-container>
+      </div>
+          <div layout="row">
+        <md-input-container flex>
+            <label>Date Added</label>
+            <md-datepicker name="date_added" ng-model="ddcvm.data.date_added" placeholder="Date Added" required></md-datepicker>
+            <div class="validation-messages" ng-messages="itemForm.date_added.$error" ng-show="itemForm.date_added.$touched" role="alert">
+              <div ng-message="valid">The entered value is not a date!</div>
+              <div ng-message="required">This date is required!</div>
+            </div>
+        </md-input-container>
+      </div>
+    </form>
+    
+    
+  </md-dialog-content>
+
+  <md-dialog-actions>
+    <md-button class="md-primary" ng-click="ddcvm.save()" ng-disabled="itemForm.$invalid">Add Gadget</md-button>
+    <md-button class="md-primary" ng-click="ddcvm.closeDialog()">Cancel</md-button>
+  </md-dialog-actions>
+</md-dialog>

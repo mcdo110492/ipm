@@ -1,0 +1,45 @@
+<div id="login" class="flex-scrollable" layout="column" ms-scroll>
+    <div id="login-form-wrapper" layout="column" layout-align="center center">
+        <div id="login-form" class="md-whiteframe-8dp">
+            <div class="logo md-accent-bg" style="width:230px">
+                <span>IPM</span>
+            </div>
+
+            <div class="title" >Log in to your account</div>
+
+            <form name="loginForm" novalidate>
+                <md-input-container class="md-block" md-no-float>
+                    <input type="text" name="username" ng-model="vm.form.username" placeholder="Username" required>
+                    <div ng-messages="loginForm.username.$error" role="alert">
+                        <div ng-message="required">
+                            <span>Username field is required</span>
+                        </div>
+                    </div>
+                </md-input-container>
+
+                <md-input-container class="md-block" md-no-float>
+                    <input type="password" name="password" ng-model="vm.form.password" placeholder="Password" required>
+                    <div ng-messages="loginForm.password.$error" role="alert">
+                        <div ng-message="required">
+                            <span>Password field is required</span>
+                        </div>
+                    </div>
+                </md-input-container>
+
+
+                <md-button type="submit" class="md-raised md-accent submit-button" aria-label="LOG IN"
+                           ng-disabled="loginForm.$invalid || loginForm.$pristine" ng-click="vm.login(vm.form)">
+                    LOG IN
+                </md-button>
+            </form>
+
+           
+
+         
+
+            <div class="register" layout="row" layout-sm="column" layout-align="center center">
+                <a class="link">Forgot Password. Contact the administrator.</a>
+            </div>
+        </div>
+    </div>
+</div>

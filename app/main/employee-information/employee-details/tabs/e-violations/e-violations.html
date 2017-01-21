@@ -1,0 +1,53 @@
+<div layout="row" layout-wrap>
+
+    <div class="about" layout="column" flex>
+        <div class="profile-box info-box general md-whiteframe-1dp" layout="column">
+            <header class="md-accent-bg">
+                <div class="title">Violations/NTE</div>
+            </header>
+
+            <div class="content">
+              <md-button class="md-raised md-primary" ng-click="vc.OpenAddDialog($event)" aria-label="Add New Violation">Add New Violation</md-button>
+              <table class="simple" ms-responsive-table>
+                <thead>
+                    <tr>
+                        <th>Type</th>
+                        <th>Date Commited</th>
+                        <th>Remarks</th>
+                        <th>NTE FILE</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+
+                <tfoot>
+                    <tr>
+                        <td></td>
+                    </tr>
+                </tfoot>
+
+                <tbody>
+                    <tr ng-repeat="violation in vc.violations">
+                        <td class="name">{{violation.violation_type}}</td>
+                        <td class="position">{{violation.date_committed | date:'M-dd-yyyy'}}</td>
+                        <td class="office">{{violation.remarks}}</td>
+                        <!--
+                        <td class="age"><a href="http://localhost/ipmservices/uploads/{{violation.file}}" target="_blank"><img ng-if="violation.file != NULL" ng-src="http://localhost/ipmservices/uploads/{{violation.file}}"   style="width:50px;height:50px"></a>
+                        </td>
+                        -->
+                        
+                        <td class="age"><a href="http://ipm.pillarsweb.com/ipmservices/uploads/{{violation.file}}" target="_blank"><img ng-if="violation.file != NULL" ng-src="http://ipm.pillarsweb.com/ipmservices/uploads/{{violation.file}}"   style="width:50px;height:50px"></a>
+                        </td>
+                    
+                        <td>
+                          <md-button class="md-raised md-accent" ng-click="vc.openUpdate($event,violation)"  aria-label="Edit">Edit</md-button>
+                          <md-button class="md-raised md-primary" ng-click="vc.openUpload($event,violation)"  aria-label="Upload">Upload NTE File</md-button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+        </div>
+
+
+</div>
+

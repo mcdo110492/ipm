@@ -1,0 +1,128 @@
+<div id="profile" class="page-layout simple tabbed">
+
+    <!-- HEADER -->
+    <div class="header md-accent-bg" layout="column" layout-align="center center" layout-gt-sm="row" layout-align-gt-sm="space-between end">
+        <div class="user-info" layout="column" layout-align="center center" layout-gt-sm="row" layout-align-gt-sm="start center">
+            <img class="profile-image avatar huge" src="assets/images/avatars/profile.jpg">
+
+            <div class="name">{{vm.info.lastname | uppercase}}, {{vm.info.firstname | uppercase}} {{vm.info.middlename | uppercase}}</div>
+        </div>
+    </div>
+    <!-- / HEADER -->
+
+    <!-- CONTENT -->
+    <div class="content" flex>
+
+        <md-tabs md-dynamic-height>
+            <md-tab>
+                <md-tab-label>
+                    <span>Personal Information</span>
+                </md-tab-label>
+                <md-tab-body >
+                    <md-content ng-controller="PersonalController as pc" class="about-tab"
+                                ng-include="'app/main/employee-information/employee-details/tabs/personal-information/personal-information.html'">
+                    </md-content>
+                </md-tab-body>
+            </md-tab>
+            <div ng-controller="EducationController as ec">
+            <md-tab ng-click="ec.getEducation(vm.info.employee_id)">
+                <md-tab-label>
+                    <span>Education</span>
+                </md-tab-label>
+                <md-tab-body>
+                    <md-content class="about-tab"
+                                ng-include="'app/main/employee-information/employee-details/tabs/education/education.html'">
+                    </md-content>
+                </md-tab-body>
+            </md-tab>
+            </div>
+            <div ng-controller="GovernmentController as gc">
+            <md-tab ng-click="gc.getGovernment()">
+                <md-tab-label>
+                    <span>Government Issued Number</span>
+                </md-tab-label>
+                <md-tab-body>
+                    <md-content class="about-tab"
+                                ng-include="'app/main/employee-information/employee-details/tabs/government-number/government-number.html'">
+                    </md-content>
+                </md-tab-body>
+            </md-tab>
+            </div>
+            <div ng-controller="ContactController as cc">
+            <md-tab ng-click="cc.getContact()">
+                <md-tab-label>
+                    <span>Contact Information</span>
+                </md-tab-label>
+                <md-tab-body>
+                    <md-content class="about-tab"
+                                ng-include="'app/main/employee-information/employee-details/tabs/contact-information/contact-information.html'">
+                    </md-content>
+                </md-tab-body>
+            </md-tab>
+            </div>
+            <div ng-controller="FamilyController as fc">
+            <md-tab ng-click="fc.getFamily()">
+                <md-tab-label>
+                    <span>Family Information</span>
+                </md-tab-label>
+                <md-tab-body>
+                    <md-content class="about-tab"
+                                ng-include="'app/main/employee-information/employee-details/tabs/family-information/family-information.html'">
+                    </md-content>
+                </md-tab-body>
+            </md-tab>
+            </div>
+            <div ng-controller="EmploymentController as es">
+            <md-tab ng-click="es.getEmployment()">
+                <md-tab-label>
+                    <span>Employment Status</span>
+                </md-tab-label>
+                <md-tab-body>
+                    <md-content class="about-tab"
+                                ng-include="'app/main/employee-information/employee-details/tabs/employment-status/employment-status.html'">
+                    </md-content>
+                </md-tab-body>
+            </md-tab>
+            </div>
+            <div ng-controller="TrainingController as ts">
+            <md-tab ng-click="ts.getTrainings()">
+                <md-tab-label>
+                    <span>Training/Seminars</span>
+                </md-tab-label>
+                <md-tab-body>
+                    <md-content class="about-tab"
+                                ng-include="'app/main/employee-information/employee-details/tabs/trainings-seminars/trainings-seminars.html'">
+                    </md-content>
+                </md-tab-body>
+            </md-tab>
+            </div>
+            <div ng-controller="ClubController as cs">
+            <md-tab ng-click="cs.getClubs()">
+                <md-tab-label>
+                    <span>Clubs</span>
+                </md-tab-label>
+                <md-tab-body>
+                    <md-content class="about-tab"
+                                ng-include="'app/main/employee-information/employee-details/tabs/clubs/clubs.html'">
+                    </md-content>
+                </md-tab-body>
+            </md-tab>
+            </div>
+            <div ng-controller="EViolationController as vc">
+            <md-tab ng-click="vc.getViolation()">
+                <md-tab-label>
+                    <span>Violations/NTE</span>
+                </md-tab-label>
+                <md-tab-body>
+                    <md-content class="about-tab"
+                                ng-include="'app/main/employee-information/employee-details/tabs/e-violations/e-violations.html'">
+                    </md-content>
+                </md-tab-body>
+            </md-tab>
+            </div>
+        </md-tabs>
+
+    </div>
+    <!-- / CONTENT -->
+
+</div>
