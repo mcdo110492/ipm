@@ -84,6 +84,30 @@
                 </md-tab-body>
             </md-tab>
             </div>
+            <div ng-controller="LicensesController as lc">
+            <md-tab ng-click="lc.getLicenses()">
+                <md-tab-label>
+                    <span>Licenses</span>
+                </md-tab-label>
+                <md-tab-body>
+                    <md-content class="about-tab"
+                                ng-include="'app/main/employee-information/employee-details/tabs/licenses/licenses.html'">
+                    </md-content>
+                </md-tab-body>
+            </md-tab>
+            </div>
+            <div ng-controller="EViolationController as vc">
+            <md-tab ng-click="vc.getViolation()">
+                <md-tab-label>
+                    <span>Violations/NTE</span>
+                </md-tab-label>
+                <md-tab-body>
+                    <md-content class="about-tab"
+                                ng-include="'app/main/employee-information/employee-details/tabs/e-violations/e-violations.html'">
+                    </md-content>
+                </md-tab-body>
+            </md-tab>
+            </div>
             <div ng-controller="TrainingController as ts">
             <md-tab ng-click="ts.getTrainings()">
                 <md-tab-label>
@@ -104,18 +128,6 @@
                 <md-tab-body>
                     <md-content class="about-tab"
                                 ng-include="'app/main/employee-information/employee-details/tabs/clubs/clubs.html'">
-                    </md-content>
-                </md-tab-body>
-            </md-tab>
-            </div>
-            <div ng-controller="EViolationController as vc">
-            <md-tab ng-click="vc.getViolation()">
-                <md-tab-label>
-                    <span>Violations/NTE</span>
-                </md-tab-label>
-                <md-tab-body>
-                    <md-content class="about-tab"
-                                ng-include="'app/main/employee-information/employee-details/tabs/e-violations/e-violations.html'">
                     </md-content>
                 </md-tab-body>
             </md-tab>

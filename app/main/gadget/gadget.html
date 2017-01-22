@@ -38,22 +38,36 @@
                   <table md-table md-progress="promise">
                     <thead md-head md-order="vm.query.order" md-on-reorder="vm.getgadgets">
                       <tr md-row>
-                        <th md-column md-order-by="order"><span>GADGET Code</span></th>
-                        <th md-column><span>GADGET Name</span></th>
+                        <th md-column md-order-by="order"><span>Code</span></th>
+                        <th md-column><span>Name</span></th>
+                        <th md-column><span>Model</span></th>
+                        <th md-column><span>Type</span></th>
                       </tr>
                     </thead>
                     <tbody md-body>
                       <tr md-row ng-repeat="gadget in vm.gadgets.data">
                         <td md-cell>
                             <!-- editable username (text with validation) -->
-                            <a href="#"  editable-textarea="gadget.gadget_code" e-name="gadget_code" onbeforesave="vm.checkName($data)" onaftersave="vm.save('gadget_code',$data, gadget.gadget_id)" e-rows="3" e-cols="40" e-name="gadget_code">
+                            <a href="#"  editable-textarea="gadget.gadget_code" e-aria-label="Code" e-name="gadget_code" onbeforesave="vm.checkName($data,'gadget_code')" onaftersave="vm.save('gadget_code',$data, gadget.gadget_id)" e-rows="3" e-cols="40" e-name="gadget_code">
                               {{ gadget.gadget_code || 'empty' }}
                             </a>
                         </td>
                         <td md-cell>
                             <!-- editable username (text with validation) -->
-                            <a href="#" editable-textarea="gadget.gadget_name" e-rows="3" e-cols="40" onbeforesave="vm.save('gadget_name',$data, gadget.gadget_id)">
+                            <a href="#" editable-textarea="gadget.gadget_name" e-aria-label="Name" e-rows="3" e-cols="40" onbeforesave="vm.checkData($data)" onaftersave="vm.save('gadget_name',$data, gadget.gadget_id)">
                               {{ gadget.gadget_name || 'empty' }}
+                            </a>
+                        </td>
+                        <td md-cell>
+                            <!-- editable username (text with validation) -->
+                            <a href="#" editable-textarea="gadget.gadget_model" e-aria-label="Model" e-rows="3" e-cols="40" onbeforesave="vm.checkName($data,'gadget_model')" onaftersave="vm.save('gadget_model',$data, gadget.gadget_id)">
+                              {{ gadget.gadget_model|| 'empty' }}
+                            </a>
+                        </td>
+                        <td md-cell>
+                            <!-- editable username (text with validation) -->
+                            <a href="#" editable-textarea="gadget.gadget_type" e-aria-label="Type" e-rows="3" e-cols="40" onbeforesave="vm.checkData($data)" onaftersave="vm.save('gadget_type',$data, gadget.gadget_id)">
+                              {{ gadget.gadget_type || 'empty' }}
                             </a>
                         </td>
                       </tr>

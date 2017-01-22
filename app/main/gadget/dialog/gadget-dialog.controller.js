@@ -9,12 +9,12 @@
 			{
 				var vm = this;
 
+					vm.url_path = api.baseUrl+'main/checkField';
 					vm.data = {
 						gadget_code:'',
 						gadget_name:'',
 						gadget_model:'',
-						gadget_type:'',
-						date_added:new Date()
+						gadget_type:''
 					};
 
 					

@@ -29,7 +29,7 @@
 			            name: 'imageFilter',
 			            fn: function(item /*{File|FileLikeObject}*/, options) {
 			                var type = '|' + item.name.slice(item.name.lastIndexOf('.')+ 1) + '|';
-			                return '|kml|kmz|'.indexOf(type) !== -1;
+			                return '|jpeg|jpg|'.indexOf(type) !== -1;
 
 			            }
 			        });

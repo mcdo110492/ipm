@@ -42,7 +42,8 @@
 
             'app.dispatching',
             'app.equipment',
-            'app.gadget'
+            'app.gadget',
+            'app.lunch-box'
 
 
 

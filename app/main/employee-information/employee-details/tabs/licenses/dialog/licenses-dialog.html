@@ -1,0 +1,60 @@
+
+
+<md-dialog add-item-dialog class="event-form-dialog">
+  <md-dialog-content class="md-dialog-content">
+    
+    <h2 class="md-title">Employee Licenses</h2>
+  
+  
+    <form name="itemForm" novalidate>
+      <div layout="row">
+        <md-input-container flex>
+          <label>License #</label>
+          <input type="text" name="license_no" ng-model="ddcvm.data.license_no" required>
+          <div ng-messages="itemForm.license_no.$error" ng-show="itemForm.license_no.$touched" role="alert">
+              <div ng-message="required">
+                <span>This is required.</span>
+              </div>
+          </div>
+        </md-input-container>
+      </div>
+      <div layout="row">
+        <md-input-container flex>
+          <label>License Type</label>
+          <input type="text" name="license_type" ng-model="ddcvm.data.license_type" required>
+          <div ng-messages="itemForm.license_type.$error" ng-show="itemForm.license_type.$touched" role="alert">
+              <div ng-message="required">
+                <span>This is required.</span>
+              </div>
+          </div>
+        </md-input-container>
+      </div>
+      <div layout="row">
+          <md-input-container flex>
+              <label>Date Issued</label>
+              <md-datepicker name="date_issued" ng-model="ddcvm.data.date_issued" placeholder="Date Issued" required></md-datepicker>
+              <div class="validation-messages" ng-messages="itemForm.date_issued.$error" ng-show="itemForm.date_issued.$touched" role="alert">
+                <div ng-message="valid">The entered value is not a date!</div>
+                <div ng-message="required">This date is required!</div>
+              </div>
+          </md-input-container>
+      </div>
+      <div layout="row">
+          <md-input-container flex>
+              <label>Date Expired</label>
+              <md-datepicker name="date_expired" ng-model="ddcvm.data.date_expired" placeholder="Date Expired" required></md-datepicker>
+              <div class="validation-messages" ng-messages="itemForm.date_expired.$error" ng-show="itemForm.date_expired.$touched" role="alert">
+                <div ng-message="valid">The entered value is not a date!</div>
+                <div ng-message="required">This date is required!</div>
+              </div>
+          </md-input-container>
+      </div>
+    </form>
+  </md-dialog-content>
+
+  <md-dialog-actions>
+    <md-button class="md-raised md-primary" ng-disabled="itemForm.$invalid" ng-click="ddcvm.save()">Save</md-button>
+    <md-button class="md-raised md-warn" ng-click="ddcvm.closeDialog()">Cancel</md-button>
+  </md-dialog-actions>
+ 
+</md-dialog>

@@ -1,0 +1,44 @@
+<div layout="row" layout-wrap>
+
+    <div class="about" layout="column" flex>
+        <div class="profile-box info-box general md-whiteframe-1dp" layout="column">
+            <header class="md-accent-bg">
+                <div class="title">Licenses Information</div>
+            </header>
+
+            <div class="content">
+              <md-button class="md-raised md-primary" ng-click="lc.OpenAddDialog($event,vm.info.employee_id)" ng-if="!vm.role_type" aria-label="Add New License">Add New License Information</md-button>
+              <table class="simple" ms-responsive-table>
+                <thead>
+                    <tr>
+                        <th>License #</th>
+                        <th>Type</th>
+                        <th >Date Issued</th>
+                        <th>Date Expired</th>
+                        <th ng-if="!vm.role_type">Actions</th>
+                    </tr>
+                </thead>
+
+                <tfoot>
+                    <tr>
+                        <td></td>
+                    </tr>
+                </tfoot>
+
+                <tbody>
+                    <tr ng-repeat="license in lc.licenses">
+                        <td >{{license.license_no}}</td>
+                        <td >{{license.license_type}}</td>
+                        <td >{{license.date_issued | date:'MMMM d, y'}}</td>
+                        <td >{{license.date_expired | date:'MMMM d, y'}}</td>
+                        <td>
+                          <md-button class="md-raised md-accent" ng-click="lc.openUpdate($event,license,vm.info.employee_id)" ng-if="!vm.role_type"  aria-label="Edit">Edit</md-button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+        </div>
+
+
+</div>

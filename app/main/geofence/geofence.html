@@ -38,8 +38,10 @@
                   <table md-table md-progress="promise">
                     <thead md-head md-order="vm.query.order" md-on-reorder="vm.getGeofence">
                       <tr md-row>
+                        <th md-column>Route Code</th>
                         <th md-column><span>Barangay</span></th>
                         <th md-column><span>Location</span></th>
+                         <th md-column><span>Sector</span></th>
                         <th md-column><span>Routes</span></th>
                         <th md-column><span>Status</span></th>
                         <th md-column><span>Actions</span></th>
@@ -48,13 +50,19 @@
                     <tbody md-body>
                       <tr md-row ng-repeat="geofence in vm.geofences.data">
                         <td md-cell>
+                            {{geofence.route_code}}
+                        </td>
+                        <td md-cell>
                             {{geofence.brgy}}
                         </td>
                         <td md-cell>
                             {{geofence.location}}
                         </td>
                         <td md-cell>
-                            <a ui-sref='app.geofence-maps({file_name:geofence.route_file,id:geofence.geofence_id})'>Click Here to View Map Route</a>
+                            {{geofence.sector}}
+                        </td>
+                        <td md-cell>
+                            <img ng-src="http://localhost/ipmrepository/routes/{{geofence.route_file}}" alt="Cant Find File Image" ng-click="vm.OpenMap($event,geofence)" style="width:100px;height:100px">
                         </td>
                         <td md-cell>
                             <md-button class="md-raised md-warn" ng-click="vm.changeStatus(geofence.geofence_id,2)"  aria-label="EDIT Status Pending" ng-show="geofence.status == 1" >PENDING</md-button>

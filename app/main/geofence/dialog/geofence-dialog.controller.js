@@ -17,7 +17,8 @@
 						brgy:'',
 						location:'',
 						route_file:'',
-						geofence_id:''
+						geofence_id:'',
+						sector:''
 					};
 
 					var uploader = vm.uploader = new FileUploader({
@@ -34,7 +35,7 @@
 			            name: 'imageFilter',
 			            fn: function(item /*{File|FileLikeObject}*/, options) {
 			                var type = '|' + item.name.slice(item.name.lastIndexOf('.')+ 1) + '|';
-			                return '|kml|kmz|'.indexOf(type) !== -1;
+			                return '|jpg|jpeg|'.indexOf(type) !== -1;
 
 			            }
 			        });
@@ -79,7 +80,8 @@
 								brgy:data.brgy,
 								location:data.location,
 								route_file:data.route_file,
-								geofence_id:data.geofence_id
+								geofence_id:data.geofence_id,
+								sector:data.sector
 							};
 			        	}
 			        }

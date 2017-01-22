@@ -31,7 +31,7 @@
                     {
                         if(role == 1 || role ==2)
                         {
-                            $location.url('/department');
+                            $location.url('/position');
                         }
                         else if(role == 3)
                         {
