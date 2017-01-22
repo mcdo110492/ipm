@@ -234,7 +234,13 @@
 
          api.employee_violation = $resource(api.baseUrl+'employee/violationInfo/:id', null, {'update':{'method':'PUT'}});
 
+         api.employee_licenses = $resource(api.baseUrl+'employee/licensesInfo/:id', null, {'update':{'method':'PUT'}});
 
+         api.lunchbox = $resource(api.baseUrl+'lunchbox/lunchbox/:id', null, {'update':{'method':'PUT'}});
+
+         api.lunchbox_gadgets = $resource(api.baseUrl+'lunchbox/lunchboxGadgets/:id', null, {'update':{'method':'PUT'}});
+
+         
 
          /** 
             Kay MAk

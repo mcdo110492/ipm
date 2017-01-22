@@ -1,41 +1,57 @@
+
 (function () {
 	'use strict';
-
 		angular
 			.module('fuse')
-			.directive('uniqueData',uniqueData);
+			.directive('uniqueValidation',uniqueValidation);
 
 			/** @ngInject */
-			function uniqueData (api,$q)
+			function uniqueValidation ($q,$resource)
 			{
-				return {
-				    restrict: 'A',
-				    replace:true,
-				    scope:{
-				    	fieldName: '@',
-				    	tableName: '@'
-				    },
-				    require: 'ngModel',
-				    link: function(scope, element, attrs, ngModel) {
-				      ngModel.$asyncValidators.unique = validation;
+				var directive = {
+						restrict:'A',
+						require:'ngModel',
+						link: link
+				};
+				return directive;
 
+					function link (scope,element,attrs,ngModel){
+						ngModel.$asyncValidators.unique = uniqueValidator;
 
-				  		function validation ()
-				  		{
-				  			var d = $q.defer();
-						    api.main.save({'field':scope.fieldName,'table':scope.tableName,'value':ngModel.$viewValue},success);
-						    function success (res) {
-						      res = res || {};
-						      if(res.stat == 200) { 
-						        d.resolve();
-						      } else { 
-						        d.reject();
-						      }
-						    }
+							function uniqueValidator (modelValue,viewValue){
+								var deferred   = $q.defer(),
+									currentVal = modelValue || viewValue,
+									urlPath    = attrs.urlPath,
+									keyID 	   = attrs.keyId,
+									keyField   = attrs.keyField,
+									keyTable   = attrs.keyTable;
 
-						    return d.promise;
-				  		}
-				    }
-				  };
+									if(urlPath && keyField){
+										var res = $resource(urlPath),
+											param = {keyid:keyID,field:keyField,value:currentVal,table:keyTable};
+											res.save(param,success);
+											function success(r)
+											{
+												if(r.stat === 200)
+												{
+													deferred.resolve();
+												}
+												else if(r.stat === 403)
+												{
+													 deferred.reject();
+												}
+												else
+												{
+													deferred.reject();
+												}
+											}
+										return deferred.promise;
+									}
+									else
+									{
+										deferred.resolve();
+									}
+							}
+					}
 			}
 })();

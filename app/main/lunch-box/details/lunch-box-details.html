@@ -1,0 +1,73 @@
+<div id="mail" class="page-layout carded fullwidth single-scroll" layout="row">
+
+    <!-- TOP BACKGROUND -->
+    <div class="top-bg md-accent-bg"></div>
+    <!-- / TOP BACKGROUND -->
+
+    <!-- CENTER -->
+    <div class="center" layout="column" flex>
+
+        <!-- CONTENT HEADER -->
+        <div class="header" layout="row" layout-align="start center">   
+                
+        </div>
+        <!-- / CONTENT HEADER -->
+
+        <!-- CONTENT CARD -->
+        <div class="content-card">
+
+            <!-- CONTENT TOOLBAR -->
+            <div class="toolbar" layout="row" layout-align="space-between center">
+                <div layout="row" layout-align="start center"><span>{{vm.lunchboxName}}</span></div>
+                <div layout="row" layout-align="start center"><md-button class="md-raised md-teal-500-bg white-fg pull-left"  aria-label="Add New Gadgets" ng-click="vm.OpenAddDialog($event)">ADD NEW GADGETS</md-button>
+                </div>
+            </div>
+            <!-- / CONTENT TOOLBAR -->
+
+            <!-- CONTENT -->
+            <md-content class="content" ms-scroll>
+
+               <md-table-container>
+                  <table md-table>
+                    <thead md-head>
+                      <tr md-row>
+                        <th md-column ><span>Gadget Code</span></th>
+                        <th md-column ><span>Name</span></th>
+                        <th md-column ><span>Model</span></th>
+                        <th md-column ><span>Type</span></th>
+                        <th md-column><span>Action</span></th>
+                      </tr>
+                    </thead>
+                    <tbody md-body>
+                      <tr md-row ng-repeat="gadget in vm.gadgets">
+                        <td md-cell>
+                            {{gadget.gadget_code}}
+                        </td>
+                       <td md-cell>
+                            {{gadget.gadget_name}}
+                        </td>
+                        <td md-cell>
+                            {{gadget.gadget_model}}
+                        </td>
+                        <td md-cell>
+                            {{gadget.gadget_type}}
+                        </td>
+                        <td md-cell>
+                            <md-button class="md-raised md-primary" ng-click="vm.update($event,gadget)" aria-label="EDIT" >Change Gadget</md-button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </md-table-container>
+                
+
+            </md-content>
+            <!-- / CONTENT -->
+
+        </div>
+        <!-- / CONTENT CARD -->
+
+    </div>
+    <!-- / CENTER -->
+
+</div>

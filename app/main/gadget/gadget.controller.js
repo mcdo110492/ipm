@@ -13,6 +13,7 @@
 				vm.gadgets = [];
 				vm.getgadgets = getgadgets;
 				vm.checkName  = checkName;
+				vm.checkData  = checkData;
 				vm.OpenAddDialog = OpenAddDialog;
 				vm.save         = save;
 				vm.query = {
@@ -76,8 +77,21 @@
 
 				}
 
+
+				function checkData(value)
+				{
+					if (value === '') {
+				      
+				      return 'This is required';
+				    }
+				    else
+				    {
+				    	return true;
+				    }
+				}
+
 				
-				function checkName(value)
+				function checkName(value,field)
 				{
 					if (value === '') {
 				      
@@ -85,7 +99,7 @@
 				    }
 				    else {
 				    	var d = $q.defer();
-					    api.main.save({'table':'gadget','field':'gadget_code','value': value},success);
+					    api.main.save({'table':'gadget','field':field,'value': value},success);
 					    function success (res) {
 					      res = res || {};
 					      if(res.stat == 200) { 

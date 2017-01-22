@@ -1,0 +1,44 @@
+
+<md-dialog add-item-dialog class="event-form-dialog">
+  <md-dialog-content class="md-dialog-content">
+    
+    <h2 class="md-title">Save Lunch Box</h2>
+  
+  
+    <form name="itemForm" novalidate>
+      <div layout="row" class="input-row">
+        <md-input-container flex>
+          <label>Lunch Box Code</label>
+          <input type="text" name="lunch_box_code" ng-model="ddcvm.data.lunch_box_code" ng-model-options="{debounce:500}" unique-validation url-path="{{ddcvm.url_path}}" key-id="0" key-field="lunch_box_code" key-table="lunch_box" required>
+          <div ng-messages="itemForm.lunch_box_code.$error" ng-show="itemForm.lunch_box_code.$touched" role="alert">
+              <div ng-message="required">
+                <span>This is required.</span>
+              </div>
+              <div ng-message="unique">
+                 <span>This data is not available</span>
+              </div>
+          </div>
+        </md-input-container>
+      </div>
+      <div layout="row" class="input-row">
+        <md-input-container flex>
+          <label>Gadgets</label>
+          <md-select ng-model="ddcvm.data.gadgets" multiple required>
+              <md-option ng-value="gadget.gadget_id" ng-repeat="gadget in ddcvm.gadgets">{{gadget.gadget_code}} - {{gadget.gadget_name}}</md-option>
+          </md-select>
+          <div ng-messages="itemForm.gadgets.$error" ng-show="itemForm.gadgets.$touched" role="alert">
+              <div ng-message="required">
+                <span>This is required.</span>
+              </div>
+          </div>
+        </md-input-container>
+      </div>
+    </form>
+    
+  </md-dialog-content>
+
+  <md-dialog-actions>
+    <md-button class="md-raised md-primary" ng-click="ddcvm.save()" ng-disabled="itemForm.$invalid">Save Changes</md-button>
+    <md-button class="md-raised md-warn" ng-click="ddcvm.closeDialog()">Cancel</md-button>
+  </md-dialog-actions>
+</md-dialog>

@@ -16,6 +16,7 @@
 				vm.openUpdate    = openUpdate;
 				vm.changeStatus = changeStatus;
 				vm.changeRoute = changeRoute;
+				vm.OpenMap   = OpenMap;
 				vm.query = {
 					order:'order',
 					limit: 5,
@@ -44,6 +45,18 @@
 					var ctrl = 'GeofenceDialogController';
 					var ctrlAs = 'ddcvm';
 				 	var localData = {'data':geofence};
+				 	PluginConfig.ModalDialog(tmpUrl,ev,localData,ctrl,ctrlAs).then(vm.getGeofence);
+				 }
+
+
+				 function OpenMap (ev,data)
+				 {
+				 	var tmpUrl = 'app/main/geofence/maps-dialog/maps-dialog.html';
+					var ctrl = 'GeofenceMapDialogController';
+					var ctrlAs = 'dcvm';
+				 	
+				 	var localData = {'data':data};
+				 	
 				 	PluginConfig.ModalDialog(tmpUrl,ev,localData,ctrl,ctrlAs).then(vm.getGeofence);
 				 }
 

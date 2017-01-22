@@ -30,6 +30,17 @@
           </div>
         </md-input-container>
       </div>
+      <div layout="row">
+        <md-input-container flex>
+          <label>Sector</label>
+          <input type="text" name="sector" ng-model="ddcvm.data.sector" required>
+          <div ng-messages="itemForm.sector.$error" ng-show="itemForm.sector.$touched" role="alert">
+              <div ng-message="required">
+                <span>This is required.</span>
+              </div>
+          </div>
+        </md-input-container>
+      </div>
     
   </md-dialog-content>
 
