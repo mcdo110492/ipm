@@ -32,11 +32,11 @@
 											res.save(param,success);
 											function success(r)
 											{
-												if(r.stat === 200)
+												if(r.status === 200)
 												{
 													deferred.resolve();
 												}
-												else if(r.stat === 403)
+												else if(r.status === 403)
 												{
 													 deferred.reject();
 												}

@@ -18,9 +18,31 @@
         </md-input-container>
       </div>
       <div layout="row">
+        <md-input-container flex>
+          <label>Client Type</label>
+          <input type="text" name="client_type" ng-model="ddcvm.data.client_type" required>
+          <div ng-messages="itemForm.client_type.$error" ng-show="itemForm.client_type.$touched" role="alert">
+              <div ng-message="required">
+                <span>This is required.</span>
+              </div>
+          </div>
+        </md-input-container>
+      </div>
+      <div layout="row">
+        <md-input-container flex>
+          <label>Contact Number</label>
+          <input type="text" name="contact_no" ng-model="ddcvm.data.contact_no" required>
+          <div ng-messages="itemForm.contact_no.$error" ng-show="itemForm.contact_no.$touched" role="alert">
+              <div ng-message="required">
+                <span>This is required.</span>
+              </div>
+          </div>
+        </md-input-container>
+      </div>
+      <div layout="row">
          <md-input-container flex>
             <label>Type of Establishment</label>
-             <md-select name="type_est_id" placeholder="Type of Establishment" ng-model="ddcvm.data.type_est_id" md-on-open="ddcvm.loadEstablishment()" required>
+             <md-select name="type_est_id" placeholder="Type of Establishment" ng-model="ddcvm.data.type_est_id"  required>
                 <md-option ng-value="establishment.type_est_id" ng-repeat="establishment in ddcvm.establishments">
                   {{establishment.type_est_name}}
                 </md-option>
@@ -69,7 +91,7 @@
   </md-dialog-content>
 
   <md-dialog-actions>
-    <md-button class="md-primary md-raised" ng-click="ddcvm.save()" ng-disabled="itemForm.$invalid">Add Complaint</md-button>
+    <md-button class="md-primary md-raised" ng-click="ddcvm.save()" ng-disabled="itemForm.$invalid">Save</md-button>
     <md-button class="md-raised md-warn" ng-click="ddcvm.closeDialog()">Cancel</md-button>
   </md-dialog-actions>
 </md-dialog>

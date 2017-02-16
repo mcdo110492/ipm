@@ -1,0 +1,51 @@
+
+<md-dialog add-item-dialog class="event-form-dialog">
+  <md-dialog-content class="md-dialog-content">
+    
+    <h2 class="md-title">Add Equipment</h2>
+  
+  
+    <form name="itemForm" novalidate>
+        <md-input-container flex>
+      <div layout="row">
+          <label>Driver</label>
+         <md-select name="employee_id" placeholder="Driver" ng-model="ddcvm.data.employee_id"  required>
+                <md-option value="{{employee.employee_id}}" ng-repeat="employee in ddcvm.employees">
+            
+                     {{employee.employee_no}} - {{employee.firstname}} -  {{employee.lastname}}
+                </md-option>
+            </md-select>
+            <div ng-messages="itemForm.employee_id.$error" ng-show="itemForm.employee_id.$touched" role="alert">
+                <div ng-message="required">
+                  <span>This is required.</span>
+                </div>
+            </div>
+        </md-input-container>
+      </div>
+
+
+      <div layout="row">
+        <md-input-container flex>
+          <label>Equipment (Truck No.)</label>
+        <md-select name="equipment_id" placeholder="Equipments" ng-model="ddcvm.data.equipment_id"  required>
+                <md-option value="{{equipment.equipment_id}}" ng-repeat="equipment in ddcvm.equipments">
+                    {{equipment.equipment_code}} - {{equipment.equipment_name}} 
+                </md-option>
+            </md-select>
+            <div ng-messages="itemForm.equipment_id.$error" ng-show="itemForm.equipment_id.$touched" role="alert">
+                <div ng-message="required">
+                  <span>This is required.</span>
+                </div>
+            </div>
+        </md-input-container>
+      </div>
+        
+    </form>
+    
+  </md-dialog-content>
+
+  <md-dialog-actions>
+    <md-button class="md-primary" ng-click="ddcvm.save()" ng-disabled="itemForm.$invalid">Add Equipment</md-button>
+    <md-button class="md-primary" ng-click="ddcvm.closeDialog()">Cancel</md-button>
+  </md-dialog-actions>
+</md-dialog>

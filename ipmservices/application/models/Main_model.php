@@ -166,7 +166,7 @@ class Main_model extends CI_Model {
 	{
 		$config['upload_path']          = $uploadPath;
         $config['allowed_types']        = $allowed_types;
-        $config['max_size']             = 25000;
+        $config['max_size']             = 28000;
         $config['overwrite']			= true;
         $config['encrypt_name']			= true;
 		$this->load->library('upload', $config);

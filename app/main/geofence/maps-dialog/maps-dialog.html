@@ -4,8 +4,27 @@
 
 <md-dialog add-item-dialog class="event-form-dialog">
   <md-dialog-content class="md-dialog-content">
-    <h2 class="md-title">ROUTE CODE: {{dcvm.routeCode}}</h2>
-    <img ng-src="http://localhost/ipmrepository/routes/{{dcvm.route_file}}" alt="Cant Find File Image" style="width:500px;height:500px">
+    <table class="simple">
+    	<thead>
+    		<tr>
+    	 	<th>Route Code/Number</th>
+    		<th>Barangay</th>
+    		<th>Location</th>
+    		<th>Sector</th>
+    		<th>File Name(Hi-Tech Fleet)</th>
+    		</tr>
+    	</thead>
+    	<tbody>
+    		<tr>
+    			<td>{{dcvm.routeCode}}</td>
+    			<td>{{dcvm.details.brgy}}</td>
+    			<td>{{dcvm.details.location}}</td>
+    			<td>{{dcvm.details.sector}}</td>
+    			<td>{{dcvm.details.route_file_name}}</td>
+    		</tr>
+    	</tbody>
+    </table>
+    <img ng-src="http://localhost/ipmrepository/routes/{{dcvm.route_file}}" alt="Cant Find File Image" style="width:700px;height:500px">
   </md-dialog-content>
   <md-dialog-actions>
     

@@ -1,0 +1,462 @@
+
+<md-dialog add-item-dialog class="event-form-dialog">
+  <md-dialog-content class="md-dialog-content">
+    
+    <h2 class="md-title">Save Evaluation</h2>
+  
+  
+    <form name="itemForm" novalidate>
+      <div layout="row" class="input-row">
+        <md-input-container flex>
+          <label>Evaluation Code</label>
+          <input type="text" placeholder="Write here!" name="evaluation_code" ng-model="ddcvm.data.evaluation_code" ng-model-options="{debounce:500}" unique-validation url-path="{{ddcvm.url_path}}" key-id="0" key-field="evaluation_code" key-table="lunch_box" required>
+          <div ng-messages="itemForm.evaluation_code.$error" ng-show="itemForm.evaluation_code.$touched" role="alert">
+              <div ng-message="required">
+                <span>This is required.</span>
+              </div>
+              <div ng-message="unique">
+                 <span>This data is not available</span>
+              </div>
+          </div>
+        </md-input-container>
+      </div>
+     <div layout="row">
+        <md-input-container flex>
+            <label>Date</label>
+            <md-datepicker name="dispatch_date" ng-model="ddcvm.data.dispatch_date" placeholder="Date" required></md-datepicker>
+            <div class="validation-messages" ng-messages="itemForm.dispatch_date.$error" ng-show="itemForm.dispatch_date.$touched" role="alert">
+              <div ng-message="valid">The entered value is not a date!</div>
+              <div ng-message="required">This date is required!</div>
+            </div>
+        </md-input-container>
+      </div>
+    <div layout="row">
+        <md-input-container flex>
+          <label>Time</label>
+          <input type="time" name="dispatch_time" ng-model="ddcvm.data.dispatch_time" required>
+          <div ng-messages="itemForm.dispatch_time.$error" ng-show="itemForm.dispatch_time.$touched" role="alert">
+              <div ng-message="required">
+                <span>This is required.</span>
+              </div>
+              <div ng-message="unique">
+                <span>This value is not available</span>
+              </div>
+          </div>
+        </md-input-container>
+      </div>
+         <div layout="row">
+        <md-input-container flex>
+        <h2>To Evaluate:</h2>
+          <label>Truck No.</label>
+        <md-select name="equipment_id" placeholder="Truck  No." ng-model="ddcvm.data.equipment_id"  required>
+                <md-option value="{{equipment.equipment_id}}" ng-repeat="equipment in ddcvm.equipments">
+                   {{equipment.equipment_name}} 
+                </md-option>
+            </md-select>
+            <div ng-messages="itemForm.equipment_id.$error" ng-show="itemForm.equipment_id.$touched" role="alert">
+                <div ng-message="required">
+                  <span>This is required.</span>
+                </div>
+            </div>
+        </md-input-container>
+    
+      </div>
+      
+       <div layout="row" class="input-row">
+        <md-input-container flex>
+          <label>Driver/Paleros</label>
+          <input type="text" placeholder="Write here!" name="Driver/Paleros" required>
+          <div ng-messages="itemForm.department_name.$error" ng-show="itemForm.department_name.$touched" role="alert">
+              <div ng-message="required">
+                <span>This is required.</span>
+              </div>
+          </div>
+        </md-input-container>
+      </div>
+        <div layout="row">
+        <md-input-container flex>
+          <label>Shift</label>
+           <md-select name="shift_id" placeholder="Select Shift"ng-model="ddcvm.data.shift_id" required>
+                <md-option ng-value="shift.shift_id" ng-repeat="shift in ddcvm.shifts">
+                   {{shift.shift_name}}
+            </md-select>
+      
+           <div ng-messages="itemForm.geofence_id.$error" ng-show="itemForm.geofence_id.$touched" role="alert">
+              <div ng-message="required">
+                <span>This is required.</span>
+              </div>
+          </div>
+        </md-input-container>
+      </div>
+        <div layout="row" >
+          <h2>I.  Health and Safety - PPE Standard Implementation – 25%</h2>
+
+      </div>
+         <div layout="row" >
+          <label>1. Does the driver and “palero” are completely using PPE issued by the company?</label>
+          </div>
+          <hr>
+       <div layout="row" >
+          <md-checkbox md-no-ink ng-model="hasInk" aria-label="No Ink Effects">
+           1. Boots
+          </md-checkbox>
+      </div>
+       <div layout="row" >
+          <md-checkbox md-no-ink ng-model="hasInk" aria-label="No Ink Effects">
+           1. Boots
+          </md-checkbox>
+      </div>
+       <div layout="row" >
+          <md-checkbox md-no-ink ng-model="hasInk" aria-label="No Ink Effects">
+          2. Gloves
+          </md-checkbox>
+      </div>
+       <div layout="row" >
+          <md-checkbox md-no-ink ng-model="hasInk" aria-label="No Ink Effects">
+           3. Uniform Upper
+          </md-checkbox>
+      </div>
+       <div layout="row" >
+          <md-checkbox md-no-ink ng-model="hasInk" aria-label="No Ink Effects">
+           4. Pants
+          </md-checkbox>
+      </div>
+       <div layout="row" >
+          <md-checkbox md-no-ink ng-model="hasInk" aria-label="No Ink Effects">
+           5. Mask
+          </md-checkbox>
+      </div>
+          <div layout="row" >
+          <md-checkbox md-no-ink ng-model="hasInk" aria-label="No Ink Effects">
+           6. Rain Coat
+          </md-checkbox>
+      </div>
+       <div layout="row" >
+        <label>Remarks/Comments:</label>
+           <input type="text" placeholder="Write here!" name="Driver/Paleros" required>
+          <div ng-messages="itemForm.department_name.$error" ng-show="itemForm.department_name.$touched" role="alert">
+              <div ng-message="required">
+                <span>This is required.</span>
+              </div>
+          </div>
+      </div>
+      <hr>
+               <div layout="row" >
+    <label>2. Does the driver and “palero” are completely using issued cleaning material by the company?</label>
+          </div>
+          <hr>
+       <div layout="row" >
+          <md-checkbox md-no-ink ng-model="hasInk" aria-label="No Ink Effects">
+           1. Pala
+          </md-checkbox>
+      </div>
+       <div layout="row" >
+          <md-checkbox md-no-ink ng-model="hasInk" aria-label="No Ink Effects">
+           1. Tray
+          </md-checkbox>
+      </div>
+       <div layout="row" >
+          <md-checkbox md-no-ink ng-model="hasInk" aria-label="No Ink Effects">
+          2. Rake
+          </md-checkbox>
+      </div>
+       <div layout="row" >
+          <md-checkbox md-no-ink ng-model="hasInk" aria-label="No Ink Effects">
+           3. Lona
+          </md-checkbox>
+      </div>
+       <div layout="row" >
+          <md-checkbox md-no-ink ng-model="hasInk" aria-label="No Ink Effects">
+           4. Broom Stick or Walis Ting2x
+          </md-checkbox>
+      </div>
+       <div layout="row" >
+          <md-checkbox md-no-ink ng-model="hasInk" aria-label="No Ink Effects">
+           5. Mask
+          </md-checkbox>
+      </div>
+          <div layout="row" >
+          <md-checkbox md-no-ink ng-model="hasInk" aria-label="No Ink Effects">
+           6.Dust Pan
+          </md-checkbox>
+      </div>
+       <div layout="row" >
+        <label>Remarks/Comments:</label>
+           <input type="text" placeholder="Write here!" name="Driver/Paleros" required>
+          <div ng-messages="itemForm.department_name.$error" ng-show="itemForm.department_name.$touched" role="alert">
+              <div ng-message="required">
+                <span>This is required.</span>
+              </div>
+          </div>
+      </div>
+      <hr>
+        <div layout="row" >
+           <label>3. Are the trucks are clean enough and without foul odor before dispatch?</label>
+          </div>
+          <hr>
+             <div layout="row" >
+          <md-checkbox md-no-ink ng-model="hasInk" aria-label="No Ink Effects">
+           YES
+          </md-checkbox>
+      </div>
+          <div layout="row" >
+          <md-checkbox md-no-ink ng-model="hasInk" aria-label="No Ink Effects">
+           NO
+          </md-checkbox>
+      </div>
+      <hr>
+       <div layout="row" >
+          <h2>II.  Maintenance and Supply – 25%</h2>
+
+      </div>
+       <hr>
+        <div layout="row" >
+           <label>
+4.  Are trucks/equipment’s are in good condition/operational with complete accessories as listed in our Walk around Checklist prior for dispatch?
+</label>
+          </div>
+          <hr>
+<div layout="row" >
+          <md-checkbox md-no-ink ng-model="hasInk" aria-label="No Ink Effects">
+           YES
+          </md-checkbox>
+      </div>
+          <div layout="row" >
+          <md-checkbox md-no-ink ng-model="hasInk" aria-label="No Ink Effects">
+           NO
+          </md-checkbox>
+      </div>
+       <div layout="row" >
+        <label>Remarks/Comments:</label>
+           <input type="text" placeholder="Write here!" name="Driver/Paleros" required>
+          <div ng-messages="itemForm.department_name.$error" ng-show="itemForm.department_name.$touched" role="alert">
+              <div ng-message="required">
+                <span>This is required.</span>
+              </div>
+          </div>
+      </div>
+       <div layout="row" >
+           <label>
+5.  Are trucks/equipment’s have refuel or full tank prior for dispatch?
+</label>
+          </div>
+          <hr>
+<div layout="row" >
+          <md-checkbox md-no-ink ng-model="hasInk" aria-label="No Ink Effects">
+           YES
+          </md-checkbox>
+      </div>
+          <div layout="row" >
+          <md-checkbox md-no-ink ng-model="hasInk" aria-label="No Ink Effects">
+           NO
+          </md-checkbox>
+      </div>
+       <div layout="row" >
+        <label>Remarks/Comments:</label>
+           <input type="text" placeholder="Write here!" name="Driver/Paleros" required>
+          <div ng-messages="itemForm.department_name.$error" ng-show="itemForm.department_name.$touched" role="alert">
+              <div ng-message="required">
+                <span>This is required.</span>
+              </div>
+          </div>
+      </div>
+      <hr>
+       <div layout="row" >
+          <h2>III.  Operations Collection – 50%</h2>
+      </div>
+       <div layout="row" >
+           <label>
+6.  Is there any main thoroughfares roads, main roads, inner roads, secondary and tertiary streets, establishment, public markets in your area that not able pass and collect? 
+Pls. state specific name of roads, streets, name of establishment.
+
+</label>
+          </div>
+          <hr>
+<div layout="row" >
+          <md-checkbox md-no-ink ng-model="hasInk" aria-label="No Ink Effects">
+           YES
+          </md-checkbox>
+      </div>
+          <div layout="row" >
+          <md-checkbox md-no-ink ng-model="hasInk" aria-label="No Ink Effects">
+           NO
+          </md-checkbox>
+      </div>
+       <div layout="row" >
+        <label>Remarks/Comments:</label>
+           <input type="text" placeholder="Write here!" name="Driver/Paleros" required>
+          <div ng-messages="itemForm.department_name.$error" ng-show="itemForm.department_name.$touched" role="alert">
+              <div ng-message="required">
+                <span>This is required.</span>
+              </div>
+          </div>
+      </div>
+       <div layout="row" >
+           <label>
+7.  Are there any obstructions, hardships, difficulties identified in your area that affect the efficiency in collecting the waste garbage.  
+</label>
+          </div>
+          <hr>
+<div layout="row" >
+          <md-checkbox md-no-ink ng-model="hasInk" aria-label="No Ink Effects">
+           YES
+          </md-checkbox>
+      </div>
+          <div layout="row" >
+          <md-checkbox md-no-ink ng-model="hasInk" aria-label="No Ink Effects">
+           NO
+          </md-checkbox>
+      </div>
+       <div layout="row" >
+        <label>Remarks/Comments:</label>
+           <input type="text" placeholder="Write here!" name="Driver/Paleros" required>
+          <div ng-messages="itemForm.department_name.$error" ng-show="itemForm.department_name.$touched" role="alert">
+              <div ng-message="required">
+                <span>This is required.</span>
+              </div>
+          </div>
+      </div>
+       <div layout="row" >
+           <label>
+8.  Did perform the mopping and remopping activity to ensure to no waste/garbage left in your area
+</label>
+          </div>
+          <hr>
+<div layout="row" >
+          <md-checkbox md-no-ink ng-model="hasInk" aria-label="No Ink Effects">
+           YES
+          </md-checkbox>
+      </div>
+          <div layout="row" >
+          <md-checkbox md-no-ink ng-model="hasInk" aria-label="No Ink Effects">
+           NO
+          </md-checkbox>
+      </div>
+       <div layout="row" >
+        <label>Remarks/Comments:</label>
+           <input type="text" placeholder="Write here!" name="Driver/Paleros" required>
+          <div ng-messages="itemForm.department_name.$error" ng-show="itemForm.department_name.$touched" role="alert">
+              <div ng-message="required">
+                <span>This is required.</span>
+              </div>
+          </div>
+      </div>
+       <div layout="row" >
+           <label>
+9.  Are you able to confirm and check prior dumping the full load of your truck ensuring it’s not under load?   
+</label>
+          </div>
+          <hr>
+<div layout="row" >
+          <md-checkbox md-no-ink ng-model="hasInk" aria-label="No Ink Effects">
+           YES
+          </md-checkbox>
+      </div>
+          <div layout="row" >
+          <md-checkbox md-no-ink ng-model="hasInk" aria-label="No Ink Effects">
+           NO
+          </md-checkbox>
+      </div>
+       <div layout="row" >
+        <label>Remarks/Comments:</label>
+           <input type="text" placeholder="Write here!" name="Driver/Paleros" required>
+          <div ng-messages="itemForm.department_name.$error" ng-show="itemForm.department_name.$touched" role="alert">
+              <div ng-message="required">
+                <span>This is required.</span>
+              </div>
+          </div>
+      </div>
+       <div layout="row" >
+           <label>
+10. Is there any identified illegal dumping or bulky/yard wastes or tambakan in your area?
+</label>
+          </div>
+          <hr>
+<div layout="row" >
+          <md-checkbox md-no-ink ng-model="hasInk" aria-label="No Ink Effects">
+           YES
+          </md-checkbox>
+      </div>
+          <div layout="row" >
+          <md-checkbox md-no-ink ng-model="hasInk" aria-label="No Ink Effects">
+           NO
+          </md-checkbox>
+      </div>
+       <div layout="row" >
+        <label>Remarks/Comments:</label>
+           <input type="text" placeholder="Write here!" name="Driver/Paleros" required>
+          <div ng-messages="itemForm.department_name.$error" ng-show="itemForm.department_name.$touched" role="alert">
+              <div ng-message="required">
+                <span>This is required.</span>
+              </div>
+          </div>
+      </div>
+       <div layout="row" >
+           <label>
+11. Is the team work and cooperation present between driver and palero?
+</label>
+          </div>
+          <hr>
+<div layout="row" >
+          <md-checkbox md-no-ink ng-model="hasInk" aria-label="No Ink Effects">
+           YES
+          </md-checkbox>
+      </div>
+          <div layout="row" >
+          <md-checkbox md-no-ink ng-model="hasInk" aria-label="No Ink Effects">
+           NO
+          </md-checkbox>
+      </div>
+       <div layout="row" >
+        <label>Remarks/Comments:</label>
+           <input type="text" placeholder="Write here!" name="Driver/Paleros" required>
+          <div ng-messages="itemForm.department_name.$error" ng-show="itemForm.department_name.$touched" role="alert">
+              <div ng-message="required">
+                <span>This is required.</span>
+              </div>
+          </div>
+      </div>
+       <div layout="row" >
+           <label>
+12. Is there any anomalous and illegal activity observe during the collection period? 
+</label>
+          </div>
+          <hr>
+<div layout="row" >
+          <md-checkbox md-no-ink ng-model="hasInk" aria-label="No Ink Effects">
+           YES
+          </md-checkbox>
+      </div>
+          <div layout="row" >
+          <md-checkbox md-no-ink ng-model="hasInk" aria-label="No Ink Effects">
+           NO
+          </md-checkbox>
+      </div>
+       <div layout="row" >
+        <label>Remarks/Comments:</label>
+           <input type="text" placeholder="Write here!" name="Driver/Paleros" required>
+          <div ng-messages="itemForm.department_name.$error" ng-show="itemForm.department_name.$touched" role="alert">
+              <div ng-message="required">
+                <span>This is required.</span>
+              </div>
+          </div>
+      </div>
+      <hr>
+        <div layout="row" >
+        <label>GENERAL COMMENTS/RECOMMENDATION: </label>
+           <input type="text" placeholder="Write here!" name="Driver/Paleros" required>
+          <div ng-messages="itemForm.department_name.$error" ng-show="itemForm.department_name.$touched" role="alert">
+              <div ng-message="required">
+                <span>This is required.</span>
+              </div>
+          </div>
+      </div>
+    </form>
+    
+  </md-dialog-content>
+
+  <md-dialog-actions>
+    <md-button class="md-raised md-primary" ng-click="ddcvm.save()" ng-disabled="itemForm.$invalid">Save Changes</md-button>
+    <md-button class="md-raised md-warn" ng-click="ddcvm.closeDialog()">Cancel</md-button>
+  </md-dialog-actions>
+</md-dialog>

@@ -1,0 +1,44 @@
+
+<md-dialog add-item-dialog class="event-form-dialog">
+  <md-dialog-content class="md-dialog-content">
+    
+    <h2 class="md-title">Assign New Paleros</h2>
+  
+  
+    <form name="itemForm" novalidate>
+      <h3>Select Paleros</h3>
+      <div layout="row" class="input-row">
+        <md-input-container flex>
+          <label>Position</label>
+          <md-select ng-model="ddcvm.data.paleros_position" name="paleros_position" md-on-open="ddcvm.getPositions()" required>
+              <md-option ng-value="p.position_id" ng-repeat="p in ddcvm.palerosPositions">{{p.position_name}}</md-option>
+          </md-select>
+          <div ng-messages="itemForm.paleros_position.$error" ng-show="itemForm.paleros_position.$touched" role="alert">
+              <div ng-message="required">
+                <span>This is required.</span>
+              </div>
+          </div>
+        </md-input-container>
+      </div>
+      <div layout="row" class="input-row">
+        <md-input-container flex>
+          <label>Employee</label>
+          <md-select ng-model="ddcvm.data.paleros" name="paleros" md-on-open="ddcvm.getEmployees(ddcvm.data.paleros_position)" ng-disabled="itemForm.paleros_position.$invalid" multiple required>
+              <md-option ng-value="emp.employee_id" ng-repeat="emp in ddcvm.palerosEmployees">{{emp.employee_no}} - {{emp.lastname}}, {{emp.firstname}} {{emp.middlename}}</md-option>
+          </md-select>
+          <div ng-messages="itemForm.paleros.$error" ng-show="itemForm.paleros.$touched" role="alert">
+              <div ng-message="required">
+                <span>This is required.</span>
+              </div>
+          </div>
+        </md-input-container>
+      </div>
+    </form>
+    
+  </md-dialog-content>
+
+  <md-dialog-actions>
+    <md-button class="md-raised md-primary" ng-click="ddcvm.save(ddcvm.data)" ng-disabled="itemForm.$invalid">Save Changes</md-button>
+    <md-button class="md-raised md-warn" ng-click="ddcvm.closeDialog()">Cancel</md-button>
+  </md-dialog-actions>
+</md-dialog>

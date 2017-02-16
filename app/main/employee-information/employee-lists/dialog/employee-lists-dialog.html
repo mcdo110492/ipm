@@ -8,10 +8,13 @@
       <div layout="row">
         <md-input-container flex>
           <label>Employee ID Number</label>
-          <input type="text" name="employee_no" ng-model="edcvm.data.employee_no" required>
+          <input type="text" name="employee_no" ng-model="edcvm.data.employee_no" ng-model-options="{debounce:300}" unique-validation url-path="{{edcvm.urlCheck}}" key-field="employee_no" required>
           <div ng-messages="itemForm.employee_no.$error" ng-show="itemForm.employee_no.$touched" role="alert">
               <div ng-message="required">
                 <span>This is required.</span>
+              </div>
+              <div ng-message="unique">
+                <span>This ID Number is not available.</span>
               </div>
           </div>
         </md-input-container>

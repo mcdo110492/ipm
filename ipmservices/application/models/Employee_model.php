@@ -27,6 +27,24 @@ class Employee_model extends CI_Model {
 	}
 
 
+	public function employeeNoCheck($empNo)
+	{
+		$where 			= array('employee_no'=>$empNo);
+		$table 			= $this->table;
+		$count 			= $this->db->where($where)->count_all_results($table);
+		if($count>0)
+		{
+			$response 		= array('status'=>403);
+		}
+		else
+		{
+			$response 		= array('status'=>200);
+		}
+
+		return $response;
+	}
+
+
 
 	public function addInformation($info,$emp)
 	{

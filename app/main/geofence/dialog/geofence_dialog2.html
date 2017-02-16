@@ -41,7 +41,17 @@
           </div>
         </md-input-container>
       </div>
-    
+      <div layout="row">
+        <md-input-container flex>
+          <label>Route File Name (the file name in hi-tech fleet)</label>
+          <input type="text" name="route_file_name" ng-model="ddcvm.data.route_file_name" required>
+          <div ng-messages="itemForm.route_file_name.$error" ng-show="itemForm.route_file_name.$touched" role="alert">
+              <div ng-message="required">
+                <span>This is required.</span>
+              </div>
+          </div>
+        </md-input-container>
+      </div>
   </md-dialog-content>
 
   <md-dialog-actions>

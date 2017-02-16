@@ -5,12 +5,15 @@
 			.controller('ComplaintDialogController',ComplaintDialogController);
 
 			/** @ngInject */
-			function ComplaintDialogController ($mdDialog,toaster,PluginConfig,api)
+			function ComplaintDialogController ($mdDialog,toaster,PluginConfig,api,data)
 			{
 				var vm = this;
 
 					vm.data = {
+						complaint_id:'',
 						client_name:'',
+						client_type:'',
+						contact_no:'',
 						type_est_id:'',
 						details:'',
 						location:'',
@@ -20,16 +23,40 @@
 					vm.establishments = [];
 
 					vm.closeDialog = closeDialog;
-					vm.loadEstablishment = loadEstablishment;
 					vm.save 	   = save;
+
+
+					init();
+					function init()
+					{
+						if(data!=null)
+						{
+							vm.data = {
+								complaint_id:data.complaint_id,
+								client_name:data.client_name,
+								client_type:data.client_type,
+								contact_no:data.contact_no,
+								type_est_id:'',
+								details:data.details,
+								location:data.location,
+								complaint_date:new Date(data.complaint_date)
+							};
+						}
+					}
 
 					
 
 					function save ()
 					{
-						var date = moment(vm.data.complaint_date).format('YYYY-MM-D');
-						var list = {'client_name':vm.data.client_name,'type_est_id':vm.data.type_est_id,'details':vm.data.details,'location':vm.data.location,'complaint_date':date};
-						api.complaint.save(list,success);
+						if(data!=null)
+						{
+							api.complaint.update(vm.data,success);
+						}
+						else
+						{
+							api.complaint.save(vm.data,success);
+						}
+						
 						function success(r)
 						{
 							if(r.stat == 200)
@@ -44,7 +71,8 @@
 							}
 						}
 					}
-
+					
+					loadEstablishment();
 					function loadEstablishment ()
 					{
 						var query2 = {
@@ -55,11 +83,12 @@
 							field:'type_est_name'
 						};
 
-						return vm.establishments.length ? null : api.establishment.get(query2,success);
+						api.establishment.get(query2,success);
 
 						function success(r)
 						{
 							vm.establishments = r.data;
+							vm.data.type_est_id = data.type_est_id;
 						}
 					}
 

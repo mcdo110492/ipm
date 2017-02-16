@@ -75,12 +75,13 @@
 			$up = $this->main->upload_file('userfile',$allowed_types,$uploadPath);
 			if($up['stat']==200)
 			{
-				$last_id 						= $this->db->select_max('geofence_id')->get($this->table)->row()->geofence_id;
-				$data['route_code']				= $last_id + 1;
+				$last_route_code 				= $this->db->select_max('route_code')->get($this->table)->row()->route_code;
+				$data['route_code']				= $last_route_code + 1;
 				$data['route_file']				= $up['file_name'];
 				$data['brgy']					= $this->post('brgy');
 				$data['location']				= $this->post('location');
 				$data['sector']					= $this->post('sector');
+				$data['route_file_name']		= $this->post('route_file_name');
 				$data['status']					= 1;
 				$ins = $this->main->add_data($this->table,$data);
 
@@ -101,6 +102,7 @@
 			$data['brgy']				= $this->put('brgy');
 			$data['location']			= $this->put('location');
 			$data['sector']				= $this->put('sector');
+			$data['route_file_name']	= $this->put('route_file_name');
 			$where 						= array('geofence_id'=>$geofence_id);
 			$upd 						= $this->main->update_data($this->table,$where,$data);
 			if($upd)

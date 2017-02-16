@@ -70,8 +70,8 @@
 		public function equipment_post()
 		{
 			$data['equipment_code'] 	 	 = $this->post('equipment_code');
-			$data['equipment_name']   	 = $this->post('equipment_name');
-			$data['equipment_model']   	 = $this->post('equipment_model');
+			$data['equipment_name']   		 = $this->post('equipment_name');
+			$data['equipment_model']   		 = $this->post('equipment_model');
 			$data['equipment_capacity']   	 = $this->post('equipment_capacity');
 			
 			

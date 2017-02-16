@@ -51,12 +51,12 @@
 			
 			if($filter === 'All')
 			{
-				$get = $this->db->select('*')->from($table)->join('item','item.item_id='.$table.'.item_id')->order_by($table.'.'.$field,$order_by)->get()->result_array();
+				$get = $this->db->select('*')->from($table)->join('shift','shift.shift_id='.$table.'.shift_id')->order_by($table.'.'.$field,$order_by)->get()->result_array();
 			}
 			else
 			{
 		
-				$get = $this->db->select('*')->from($table)->join('item','item.item_id='.$table.'.item_id')->join('equipment','equipment.equipment_id='.$table.'.equipment_id')->join('gadget','gadget.gadget_id='.$table.'.gadget_id')->like($table.'.'.$field,$filter)->limit($limit, $offset)->order_by($table.'.'.$field,$order_by)->get()->result_array();
+				$get = $this->db->select('*')->from($table)->join('shift','shift.shift_id='.$table.'.shift_id')->join('equipment','equipment.equipment_id='.$table.'.equipment_id')->join('lunch_box','lunch_box.lunch_box_id='.$table.'.lunch_box_id')->join('geofence','geofence.geofence_id='.$table.'.geofence_id')->join('employee_information','employee_information.employee_id='.$table.'.employee_id')->like($table.'.'.$field,$filter)->limit($limit, $offset)->order_by($table.'.'.$field,$order_by)->get()->result_array();
 			}
 		
 
@@ -73,14 +73,11 @@
 			$data['trip_ticket_code'] 	 	 = $this->post('trip_ticket_code');
 			$data['dispatch_time']   	 = $this->main->format_time($this->post('dispatch_time'));
 			$data['dispatch_date']   	 = $this->main->format_date($this->post('dispatch_date'));
-			$data['shift']   	 = $this->post('shift');
-			$data['item_id']   	 = $this->post('item_id');
+			$data['shift_id']   	 = $this->post('shift_id');
+			$data['lunch_box_id']   	 = $this->post('lunch_box_id');
 			$data['equipment_id']   	 = $this->post('equipment_id');
-			$data['gadget_id']   	 = $this->post('gadget_id');
 			$data['geofence_id']   	 = $this->post('geofence_id');
-			$data['driver']   	 = $this->post('driver');
-			$data['garbage_collectors']   	 = $this->post('garbage_collectors');
-			$data['dispatcher']   	 = $this->post('dispatcher');
+			$data['employee_id']   	 = $this->post('employee_id');
 			
 
 			$ins = $this->main->add_data($this->table,$data);

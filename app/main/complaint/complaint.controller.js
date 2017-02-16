@@ -13,19 +13,17 @@
 				
 				vm.role_type = true;
 				vm.complaints = [];
-				vm.establishments	 = [];
-				vm.loadEstablishments = loadEstablishments;
-				vm.showEstablishment = showEstablishment;
 				vm.getComplaints = getComplaints;
-				vm.checkName  = checkName;
 				vm.OpenAddDialog = OpenAddDialog;
-				vm.save         = save;
+				vm.OpenUpdateDialog = OpenUpdateDialog;
+				vm.OpenMap 			= OpenMap;
+				vm.OpenDetails 		= OpenDetails;
 				vm.query = {
 					order:'order',
 					limit: 5,
 					page: 1,
 					filter:'',
-					field:'client_name'
+					field:'complaint_date'
 				};
 
 				init();
@@ -49,47 +47,36 @@
 				 	PluginConfig.ModalDialog(tmpUrl,ev,localData,ctrl,ctrlAs).then(vm.getComplaints);
 				 }
 
-
-				 function save(fieldname,value,id)
+				 function OpenUpdateDialog (ev,dataarray)
 				 {
-				 	if(value === '')
-				 	{
-				 		return 'This is required.';
-				 	}
-				 	else
-				 	{
-				 		if(fieldname === 'complaint_date')
-				 		{
-				 			var date = moment(value).format('YYYY-MM-D hh:mm:ss');
-				 			var data = {'fieldname':fieldname,'value':date,'complaint_id':id};	
-				 		}
-				 		else
-				 		{
-				 			var data = {'fieldname':fieldname,'value':value,'complaint_id':id};	
-				 		}
-				 		
-					 	api.complaint.update(data,success);
-					 	function success(r)
-					 	{
-					 		if(r.stat == 200)
-					 		{
-					 			if(fieldname === 'status')
-					 			{
-					 				getComplaints();
-					 			}
-					 			toaster.pop('success','Successfully Saved.');
-					 		}
-					 		else
-					 		{
-					 			toaster.pop('error','Something Went Wrong.');
-					 		}
-					 	}
-
-				 	}
-				 	
-				 	
+				 	var tmpUrl = 'app/main/complaint/dialog/complaint-dialog.html';
+				 	var localData = {'data':dataarray};
+				 	var ctrl = 'ComplaintDialogController';
+				 	var ctrlAs = 'ddcvm';
+				 	PluginConfig.ModalDialog(tmpUrl,ev,localData,ctrl,ctrlAs).then(vm.getComplaints);
 				 }
-				
+
+				function OpenMap (ev,data)
+				 {
+				 	var tmpUrl = 'app/main/geofence/maps-dialog/maps-dialog.html';
+					var ctrl = 'GeofenceMapDialogController';
+					var ctrlAs = 'dcvm';
+				 	
+				 	var localData = {'data':data};
+				 	
+				 	PluginConfig.ModalDialog(tmpUrl,ev,localData,ctrl,ctrlAs).then(vm.getGeofence);
+				 }
+
+				 function OpenDetails(ev,data)
+				 {
+				 	var tmpUrl = 'app/main/complaint/dispatch/dialog/dispatch-complaint-dialog-details.html';
+					var ctrl = 'DispatchComplaintDetailsDialogController';
+					var ctrlAs = 'dcvm';
+				 	
+				 	var localData = {'data':data};
+				 	
+				 	PluginConfig.ModalDialog(tmpUrl,ev,localData,ctrl,ctrlAs).then(vm.getGeofence);
+				 }
 				
 
 				
@@ -106,44 +93,11 @@
 
 				}
 
-				function loadEstablishments ()
-				{
-					vm.query2 = {
-						order:'order',
-						limit: 5,
-						page: 1,
-						filter:'All',
-						field:'type_est_name'
-					};
+				
 
-					return vm.establishments.length ? null : api.establishment.get(vm.query2,success);
+				
 
-					function success(r)
-					{
-						vm.establishments = r.data;
-					}
-				}
-
-				function showEstablishment(complaint) {
-
-				    if(complaint.type_est_id && vm.establishments.length) {
-				      var selected = $filter('filter')(vm.establishments, {type_est_id: complaint.type_est_id});
-				      return selected.length ? selected[0].type_est_name : 'Not set';
-				    } else {
-				      return complaint.type_est_name || 'Not set';
-				    }
-				 }
-
-				function checkName(value)
-				{
-					if (value === '') {
-				      
-				      return 'This is required';
-				    }
-				    
-				}
-
-				$scope.$watch('vm.query.filter', function (newValue, oldValue) {
+				$scope.$watchCollection('vm.query.filter', function (newValue, oldValue) {
 				    if(!oldValue) {
 				      bookmark = vm.query.page;
 				    }

@@ -15,17 +15,17 @@
           </tr>
           <tr>
             <td style="width:60px">Dispatch Date</td>
-            <td style="width:225px">:&emsp;{{dispatch.dispatch_time}}</td>
+            <td style="width:225px">:&emsp;{{dispatch.dispatch_date}}</td>
            
           </tr>
            <tr>
             <td style="width:60px">Shift</td>
-            <td style="width:225px">:&emsp;{{dispatch.shift}}</td>
+            <td style="width:225px">:&emsp;{{dispatch.shift_name}}</td>
            
           </tr>
             <tr>
             <td style="width:60px">Route</td>
-            <td style="width:225px">:&emsp;{{dispatch.geofence_id}}</td>
+            <td style="width:225px">:&emsp;{{dispatch.brgy}} - {{dispatch.location}} }</td>
            
           </tr>
           
@@ -35,31 +35,18 @@
            
           </tr>
            <tr>
-            <td style="width:60px">Items</td>
-            <td style="width:225px">:&emsp;{{dispatch.item_code}} - {{dispatch.item_name}} </td>
+            <td style="width:60px">Lunchbox</td>
+            <td style="width:225px">:&emsp;{{dispatch.lunch_box_code}}</td>
            
           </tr>
+        
             <tr>
-            <td style="width:60px">Gadget</td>
-            <td style="width:225px">:&emsp;{{dispatch.gadget_code}} - {{dispatch.gadget_name}}</td>
+            <td style="width:60px">Driver/Paleross</td>
+            <td style="width:225px">:&emsp;{{dispatch.employee_no}} - {{dispatch.firstname}} -  {{dispatch.lastname}}</td>
            
           </tr>
-            <tr>
-            <td style="width:60px">Driver</td>
-            <td style="width:225px">:&emsp;{{dispatch.employee_id}}</td>
            
-          </tr>
-            <tr>
-            <td style="width:60px">Garbage Collectors</td>
-            <td style="width:225px">:&emsp;{{dispatch.employee_id}}</td>
-           
-          </tr>
-
-            <tr>
-            <td style="width:60px">Dispatcher</td>
-            <td style="width:225px">:&emsp;{{dispatch.employee_id}}</td>
-           
-          </tr>
+          
         </tbody>
       </table>
       <br>

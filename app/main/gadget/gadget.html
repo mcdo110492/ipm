@@ -42,6 +42,8 @@
                         <th md-column><span>Name</span></th>
                         <th md-column><span>Model</span></th>
                         <th md-column><span>Type</span></th>
+                        <th md-cplumn><span>Status (click to change status)</span></th>
+                        <th md-column><span>Remarks</span></th>
                       </tr>
                     </thead>
                     <tbody md-body>
@@ -68,6 +70,16 @@
                             <!-- editable username (text with validation) -->
                             <a href="#" editable-textarea="gadget.gadget_type" e-aria-label="Type" e-rows="3" e-cols="40" onbeforesave="vm.checkData($data)" onaftersave="vm.save('gadget_type',$data, gadget.gadget_id)">
                               {{ gadget.gadget_type || 'empty' }}
+                            </a>
+                        </td>
+                        <td md-cell>
+                            <md-button class="md-raised md-accent" aria-label="In Use" ng-click="vm.changeStatus(gadget.gadget_id,2)" ng-if="gadget.gadget_status == 1" >In Use</md-button>
+                            <md-button class="md-raised md-warn" aria-label="Not In Use" ng-click="vm.changeStatus(gadget.gadget_id,1)" ng-if="gadget.gadget_status == 2">Not In Use</md-button>
+                        </td>
+                        <td md-cell>
+                            <!-- editable username (text with validation) -->
+                            <a href="#" editable-textarea="gadget.remarks" e-aria-label="Remarks" e-rows="3" e-cols="40" onaftersave="vm.save('remarks',$data, gadget.gadget_id)">
+                              {{ gadget.remarks || 'empty' }}
                             </a>
                         </td>
                       </tr>

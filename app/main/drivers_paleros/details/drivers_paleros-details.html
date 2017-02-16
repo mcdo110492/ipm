@@ -1,0 +1,66 @@
+<div id="mail" class="page-layout carded fullwidth single-scroll" layout="row">
+
+    <!-- TOP BACKGROUND -->
+    <div class="top-bg md-accent-bg"></div>
+    <!-- / TOP BACKGROUND -->
+
+    <!-- CENTER -->
+    <div class="center" layout="column" flex>
+
+        <!-- CONTENT HEADER -->
+        <div class="header" layout="row" layout-align="start center">   
+                
+        </div>
+        <!-- / CONTENT HEADER -->
+
+        <!-- CONTENT CARD -->
+        <div class="content-card">
+
+            <!-- CONTENT TOOLBAR -->
+            <div class="toolbar" layout="row" layout-align="space-between center">
+                <div layout="row" layout-align="start center"><span>Driver : {{vm.data.employee_no}} - {{vm.data.employee_name}}</span></div>
+                <div layout="row" layout-align="start center"><md-button class="md-raised md-teal-500-bg white-fg pull-left"  aria-label="Add New Paleros" ng-click="vm.OpenAddDialog($event)">ASSIGN NEW PALEROS</md-button>
+                </div>
+            </div>
+            <!-- / CONTENT TOOLBAR -->
+
+            <!-- CONTENT -->
+            <md-content class="content" ms-scroll>
+
+               <md-table-container>
+                  <table md-table>
+                    <thead md-head>
+                      <tr md-row>
+                        <th md-column ><span>Employee ID</span></th>
+                         <th md-column ><span>Name</span></th>
+                        <th md-column ><span>Status</span></th>
+                      </tr>
+                    </thead>
+                    <tbody md-body>
+                      <tr md-row ng-repeat="p in vm.paleros">
+                        <td md-cell>
+                            {{p.employee_no}}
+                        </td>
+                       <td md-cell>
+                            {{p.lastname}}, {{p.firstname}} {{p.middlename}}
+                        </td>
+                        <td md-cell>
+                            <md-button class="md-raised md-accent" aria-label="In Use" ng-click="vm.changeStatus(p.driver_paleros_id,0)"  ng-if="p.paleros_status == 1" >Active</md-button>
+                            <md-button class="md-raised md-warn" aria-label="Not In Use"  ng-click="vm.changeStatus(p.driver_paleros_id,1)" ng-if="p.paleros_status == 0">Deactivate</md-button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </md-table-container>
+                
+
+            </md-content>
+            <!-- / CONTENT -->
+
+        </div>
+        <!-- / CONTENT CARD -->
+
+    </div>
+    <!-- / CENTER -->
+
+</div>

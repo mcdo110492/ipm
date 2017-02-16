@@ -17,7 +17,7 @@
 					vm.employee_status = [];
 
 					vm.getEmployment = getEmployment;
-					vm.getPosition = getPosition;
+					//vm.getPosition = getPosition;
 					vm.saveChanges = saveChanges;
 					vm.employment = {
 						department_id:'',
@@ -50,6 +50,7 @@
 						}
 					}
 
+					
 					function getPosition ()
 					{
 						var query2 = {
@@ -68,6 +69,7 @@
 							vm.positions = r.data;
 						}
 					}
+
 					getEmploymentStatus();
 					function getEmploymentStatus ()
 					{

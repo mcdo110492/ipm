@@ -17,8 +17,8 @@
 		{
 			$field 		= $this->post('field');
 			$table 		= $this->post('table');
-			$value      = $this->post('value'); 
-
+			$value      = str_replace(" ", "", $this->post('value'));
+			
 			$where      = array($field=>$value);
 			$dbsettings = array('where'=>$where,'table'=>$table);
 			$check = $this->main->count_result($dbsettings);

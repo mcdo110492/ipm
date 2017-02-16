@@ -35,6 +35,7 @@
                         <th md-column ><span>Name</span></th>
                         <th md-column ><span>Model</span></th>
                         <th md-column ><span>Type</span></th>
+                        <th md-column ><span>Status</span></th>
                         <th md-column><span>Action</span></th>
                       </tr>
                     </thead>
@@ -51,6 +52,10 @@
                         </td>
                         <td md-cell>
                             {{gadget.gadget_type}}
+                        </td>
+                        <td md-cell>
+                            <md-button class="md-raised md-accent" aria-label="In Use"  ng-if="gadget.gadget_status == 1" >In Use</md-button>
+                            <md-button class="md-raised md-warn" aria-label="Not In Use"  ng-if="gadget.gadget_status == 2">Not In Use</md-button>
                         </td>
                         <td md-cell>
                             <md-button class="md-raised md-primary" ng-click="vm.update($event,gadget)" aria-label="EDIT" >Change Gadget</md-button>

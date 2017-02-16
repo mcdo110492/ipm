@@ -1,0 +1,31 @@
+
+
+
+
+<md-dialog add-item-dialog class="event-form-dialog">
+  <md-dialog-content class="md-dialog-content">
+    <table class="simple">
+    	<thead>
+    		<tr>
+    	 	<th>Trip Ticket Number</th>
+    		<th>Dispatch Date</th>
+    		<th>Dispatch Time</th>
+    		<th>Shift</th>
+    		</tr>
+    	</thead>
+    	<tbody>
+    		<tr>
+    			<td>{{dcvm.details.trip_ticket_code}}</td>
+    			<td>{{dcvm.details.dispatch_date | date:'MMMM d, y'}}</td>
+    			<td>{{dcvm.details.dispatch_time}}</td>
+    			<td>{{dcvm.details.shift}}</td>
+    		</tr>
+    	</tbody>
+    </table>
+  </md-dialog-content>
+  <md-dialog-actions>
+    
+    <md-button class="md-raised md-warn" ng-click="dcvm.closeDialog()">Close</md-button>
+  </md-dialog-actions>
+ 
+</md-dialog>

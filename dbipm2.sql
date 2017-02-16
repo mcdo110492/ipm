@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 22, 2017 at 03:34 PM
+-- Generation Time: Feb 16, 2017 at 02:53 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.23
 
@@ -28,15 +28,25 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `complaint` (
   `complaint_id` int(12) NOT NULL,
+  `complaint_no` int(12) UNSIGNED ZEROFILL NOT NULL,
   `type_est_id` int(12) NOT NULL,
   `client_name` varchar(250) NOT NULL,
   `client_type` varchar(200) DEFAULT NULL,
+  `contact_no` varchar(20) DEFAULT NULL,
   `details` varchar(250) NOT NULL,
   `location` varchar(250) NOT NULL,
   `complaint_date` date NOT NULL,
   `status` int(2) NOT NULL,
   `user_id` int(12) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `complaint`
+--
+
+INSERT INTO `complaint` (`complaint_id`, `complaint_no`, `type_est_id`, `client_name`, `client_type`, `contact_no`, `details`, `location`, `complaint_date`, `status`, `user_id`) VALUES
+(9, 000000000001, 3, 'Sample Client 21', 'House Maid', '0942394024', 'Wala nakuha', 'Brgy Bata', '2017-02-04', 1, 0),
+(10, 000000000002, 3, 'John Doe', 'House Owner of House 54', '09402934023', 'Basura wala nakuha', 'Carmella Homes', '2017-01-23', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -50,8 +60,17 @@ CREATE TABLE `complaint_dispatcher` (
   `user_id` int(12) NOT NULL,
   `trip_ticket_id` int(12) NOT NULL,
   `dispatcher_status` int(12) NOT NULL,
-  `dispatcher_remarks` varchar(250) DEFAULT NULL
+  `dispatcher_remarks` varchar(250) DEFAULT NULL,
+  `last_save` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `complaint_dispatcher`
+--
+
+INSERT INTO `complaint_dispatcher` (`complaint_dispatcher_id`, `complaint_id`, `user_id`, `trip_ticket_id`, `dispatcher_status`, `dispatcher_remarks`, `last_save`) VALUES
+(6, 9, 1, 2, 1, NULL, '2017-02-14'),
+(7, 10, 1, 1, 1, NULL, '2017-02-14');
 
 -- --------------------------------------------------------
 
@@ -65,8 +84,17 @@ CREATE TABLE `complaint_it` (
   `user_id` int(12) NOT NULL,
   `geofence_id` int(12) DEFAULT NULL,
   `it_status` int(12) NOT NULL,
-  `it_remarks` int(12) DEFAULT NULL
+  `it_remarks` int(12) DEFAULT NULL,
+  `last_save` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `complaint_it`
+--
+
+INSERT INTO `complaint_it` (`complaint_it_id`, `complaint_id`, `user_id`, `geofence_id`, `it_status`, `it_remarks`, `last_save`) VALUES
+(6, 9, 1, 10, 1, NULL, '2017-02-14'),
+(7, 10, 1, 5, 1, NULL, '2017-02-13');
 
 -- --------------------------------------------------------
 
@@ -89,14 +117,63 @@ INSERT INTO `department` (`department_id`, `department_name`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `driver`
+--
+
+CREATE TABLE `driver` (
+  `driver_id` int(12) NOT NULL,
+  `employee_id` int(12) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `driver`
+--
+
+INSERT INTO `driver` (`driver_id`, `employee_id`) VALUES
+(1, 6),
+(2, 7);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `driver_equipment`
+--
+
+CREATE TABLE `driver_equipment` (
+  `driver_equipment_id` int(11) NOT NULL,
+  `equipment_id` int(11) DEFAULT NULL,
+  `employee_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `driver_equipment`
+--
+
+INSERT INTO `driver_equipment` (`driver_equipment_id`, `equipment_id`, `employee_id`) VALUES
+(1, 1, 3);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `driver_paleros`
 --
 
 CREATE TABLE `driver_paleros` (
   `driver_paleros_id` int(12) NOT NULL,
   `driver_id` int(12) NOT NULL,
-  `employee_id` int(12) NOT NULL
+  `employee_id` int(12) NOT NULL,
+  `paleros_status` int(12) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `driver_paleros`
+--
+
+INSERT INTO `driver_paleros` (`driver_paleros_id`, `driver_id`, `employee_id`, `paleros_status`) VALUES
+(1, 1, 8, 1),
+(2, 1, 9, 0),
+(3, 2, 10, 1),
+(6, 1, 11, 1);
 
 -- --------------------------------------------------------
 
@@ -120,7 +197,13 @@ CREATE TABLE `employee_address_contact` (
 INSERT INTO `employee_address_contact` (`employee_contact_id`, `employee_id`, `present_address`, `provincial_address`, `tel_no`, `cel_no`) VALUES
 (1, 3, 'Blk. 45 Lot 4 East Homes 2 Subd. Brgy. Estefania, Bacolod City', 'Blk. 45 Lot 4 East Homes 2 Subd. Brgy. Estefania, Bacolod City', '111', '09152337038'),
 (2, 4, NULL, NULL, NULL, NULL),
-(3, 5, NULL, NULL, NULL, NULL);
+(3, 5, NULL, NULL, NULL, NULL),
+(4, 6, NULL, NULL, NULL, NULL),
+(5, 7, NULL, NULL, NULL, NULL),
+(6, 8, NULL, NULL, NULL, NULL),
+(7, 9, NULL, NULL, NULL, NULL),
+(8, 10, NULL, NULL, NULL, NULL),
+(9, 11, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -195,7 +278,13 @@ CREATE TABLE `employee_employment_status` (
 INSERT INTO `employee_employment_status` (`employment_status_id`, `employee_id`, `department_id`, `position_id`, `date_employed`, `date_retired`, `salary`, `status_id`, `employee_status_type_id`, `remarks`) VALUES
 (1, 3, 2071, 3, '2016-09-26', '2016-12-31', '15000', 2, 1, 'Remarks'),
 (2, 4, 2071, 14, '2016-12-15', NULL, NULL, 1, 1, NULL),
-(3, 5, 2071, 3, '2017-01-06', NULL, NULL, 1, 1, NULL);
+(3, 5, 2071, 3, '2017-01-06', NULL, NULL, 1, 1, NULL),
+(4, 6, 2071, 16, '2017-02-15', NULL, NULL, 1, 1, NULL),
+(5, 7, 2071, 16, '2017-02-15', NULL, NULL, 1, 1, NULL),
+(6, 8, 2071, 17, '2017-02-15', NULL, NULL, 1, 1, NULL),
+(7, 9, 2071, 17, '2017-02-15', NULL, NULL, 4, 1, NULL),
+(8, 10, 2071, 17, '2017-02-15', NULL, NULL, 4, 1, NULL),
+(9, 11, 2071, 17, '2017-02-15', NULL, NULL, 4, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -239,7 +328,13 @@ CREATE TABLE `employee_family` (
 INSERT INTO `employee_family` (`employee_family_id`, `employee_id`, `spouse_name`, `spouse_occupation`, `spouse_address`, `father_name`, `father_age`, `father_occupation`, `father_address`, `mother_name`, `mother_occupation`, `mother_address`, `mother_age`, `childrens`) VALUES
 (1, 3, 'Spouse', 'Occupation', 'Address', 'Father', NULL, 'Occupation', 'Address', 'Mother', 'Occupation', 'Address', NULL, 'Children1, Children2'),
 (2, 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(3, 5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+(3, 5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(4, 6, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(5, 7, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(6, 8, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(7, 9, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(8, 10, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(9, 11, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -263,7 +358,13 @@ CREATE TABLE `employee_government_issued_number` (
 INSERT INTO `employee_government_issued_number` (`govt_issued_id`, `sss`, `pag_ibig`, `tin`, `philhealth`, `employee_id`) VALUES
 (1, '07-1718054-3', '1210-0849-6638', '932-640-650', '19-089497247-9', 3),
 (2, NULL, NULL, NULL, NULL, 4),
-(3, NULL, NULL, NULL, NULL, 5);
+(3, NULL, NULL, NULL, NULL, 5),
+(4, NULL, NULL, NULL, NULL, 6),
+(5, NULL, NULL, NULL, NULL, 7),
+(6, NULL, NULL, NULL, NULL, 8),
+(7, NULL, NULL, NULL, NULL, 9),
+(8, NULL, NULL, NULL, NULL, 10),
+(9, NULL, NULL, NULL, NULL, 11);
 
 -- --------------------------------------------------------
 
@@ -298,7 +399,13 @@ CREATE TABLE `employee_information` (
 INSERT INTO `employee_information` (`employee_id`, `employee_no`, `firstname`, `middlename`, `lastname`, `nickname`, `dob`, `pob`, `height`, `weight`, `distinguishing_mark`, `blood`, `civil_status`, `religion`, `signature`, `status`, `citizenship`) VALUES
 (3, '14767', 'DARREL JAY', 'UY', 'ABIOL', NULL, '1976-11-18', 'Bacolod City', NULL, NULL, NULL, NULL, 'Single', NULL, NULL, 0, 'Filipino'),
 (4, '731293', 'Mc Donald', 'Ramirez', 'Fuentebella', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL),
-(5, 'mm-9111', 'mark', 't', 'mendoza', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL);
+(5, 'mm-9111', 'mark', 't', 'mendoza', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL),
+(6, 'dd-11321', 'John', 'Michael', 'Doe', NULL, '1970-01-01', 'BACOLOD CITY', NULL, NULL, NULL, NULL, 'NEGROS OCCIDENTAL', NULL, NULL, NULL, 'Philippines'),
+(7, 'dd-1321', 'Lorem', 'Ipsum', 'Dolor', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(8, 'pp-123123', 'Edrey', 'A', 'Adorias', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(9, 'pp-312312', 'Christopher', 'John', 'Johnson', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(10, 'pp-13123', 'Aaron', 'Garcia', 'Smith', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(11, 'p-31231', 'Baiker', 'Cook', 'Reed', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -428,7 +535,7 @@ INSERT INTO `employment_status` (`status_id`, `status_type`) VALUES
 (1, 'Local Hired Project Employment Contract'),
 (2, 'Manila Hired'),
 (4, 'Contractual'),
-(5, 'ss');
+(5, 'Full Time');
 
 -- --------------------------------------------------------
 
@@ -444,6 +551,14 @@ CREATE TABLE `equipment` (
   `equipment_capacity` varchar(250) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `equipment`
+--
+
+INSERT INTO `equipment` (`equipment_id`, `equipment_code`, `equipment_name`, `equipment_model`, `equipment_capacity`) VALUES
+(1, 'Code1', 'T1', 'Truck', '200'),
+(2, 'Code2', 'T2', 'Truck', '200');
+
 -- --------------------------------------------------------
 
 --
@@ -455,20 +570,22 @@ CREATE TABLE `gadget` (
   `gadget_code` varchar(50) DEFAULT NULL,
   `gadget_name` varchar(250) DEFAULT NULL,
   `gadget_model` varchar(250) DEFAULT NULL,
-  `gadget_type` varchar(250) DEFAULT NULL
+  `gadget_type` varchar(250) DEFAULT NULL,
+  `gadget_status` int(12) DEFAULT NULL,
+  `remarks` varchar(250) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `gadget`
 --
 
-INSERT INTO `gadget` (`gadget_id`, `gadget_code`, `gadget_name`, `gadget_model`, `gadget_type`) VALUES
-(1, 'DQGM3UCGDTWF', 'IPHONE 5', 'ND298ZP/A', 'SMART PHONE'),
-(2, 'SCYHL7LVHUU8KRJN', 'HUAWEI', 'G730-U10', 'SMART PHONE'),
-(3, 'RF1FB0JTFGZ', 'GALAXY CORE 2', 'SM-G355H', 'SMART PHONE'),
-(4, 'KKDO213KKD', 'POWER BANK 2500MAH', 'GKKS-2313', 'POWER BANK'),
-(5, 'KDJAKSJD2312', 'TOSHIBA 2500MAH', 'KDSA-3133', 'POWER BANK'),
-(6, 'JDAKD31233', 'GTS50', 'GSDA-3213', 'SMART PHONE');
+INSERT INTO `gadget` (`gadget_id`, `gadget_code`, `gadget_name`, `gadget_model`, `gadget_type`, `gadget_status`, `remarks`) VALUES
+(1, 'DQGM3UCGDTWF', 'IPHONE 5', 'ND298ZP/A', 'SMART PHONE', 2, 'Disposed'),
+(2, 'SCYHL7LVHUU8KRJN', 'HUAWEI', 'G730-U10', 'SMART PHONE', 1, NULL),
+(3, 'RF1FB0JTFGZ', 'GALAXY CORE 2', 'SM-G355H', 'SMART PHONE', 1, NULL),
+(4, 'KKDO213KKD', 'POWER BANK 2500MAH', 'GKKS-2313', 'POWER BANK', 1, NULL),
+(5, 'KDJAKSJD2312', 'TOSHIBA 2500MAH', 'KDSA-3133', 'POWER BANK', 1, NULL),
+(6, 'JDAKD31233', 'GTS50', 'GSDA-3213', 'SMART PHONE', 2, NULL);
 
 -- --------------------------------------------------------
 
@@ -483,19 +600,20 @@ CREATE TABLE `geofence` (
   `location` varchar(200) DEFAULT NULL,
   `sector` varchar(200) DEFAULT NULL,
   `route_file` varchar(200) DEFAULT NULL,
-  `status` int(2) DEFAULT NULL
+  `status` int(2) DEFAULT NULL,
+  `route_file_name` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `geofence`
 --
 
-INSERT INTO `geofence` (`geofence_id`, `route_code`, `brgy`, `location`, `sector`, `route_file`, `status`) VALUES
-(4, 000000000001, 'sampe', 'sample', 'sector 1', '42baf81485ff71b25faf99333d3b5aac.jpg', 1),
-(5, 000000000002, 'Brgy. Tangub', 'Subdivision', 'sector 2', 'be1291b9c7ff5d6de71b1ab6d8b45a47.jpg', 1),
-(6, 000000000003, 'Brgy. bata', 'Subdivision 2', 'sector 3', 'f1755be585aeff49e6a0f8686f4efbf8.jpg', 1),
-(10, 000000000007, 'Brgy. Tangub1', 'Subdivision1', NULL, '10c903c60650e3954a91ff7b04122d77.jpg', 1),
-(11, 000000000011, 'Sample Brgy 3', 'Subdivision23', 'Sector 22', '52d7ec8f8cd50be0e3bdded596df00e4.jpg', 1);
+INSERT INTO `geofence` (`geofence_id`, `route_code`, `brgy`, `location`, `sector`, `route_file`, `status`, `route_file_name`) VALUES
+(4, 000000000001, 'sample', 'sample', 'sector 1', '42baf81485ff71b25faf99333d3b5aac.jpg', 2, 'route1'),
+(5, 000000000002, 'Brgy. Tangub', 'Subdivision', 'sector 2', 'be1291b9c7ff5d6de71b1ab6d8b45a47.jpg', 1, 'route 2'),
+(6, 000000000003, 'Brgy. bata', 'Subdivision 2', 'sector 3', 'f1755be585aeff49e6a0f8686f4efbf8.jpg', 1, 'route3'),
+(10, 000000000007, 'Brgy. Tangub1', 'Subdivision1', 'sector 11', '10c903c60650e3954a91ff7b04122d77.jpg', 1, 'route22'),
+(11, 000000000011, 'Sample Brgy 3', 'Subdivision23', 'Sector 22', '52d7ec8f8cd50be0e3bdded596df00e4.jpg', 1, 'route23');
 
 -- --------------------------------------------------------
 
@@ -514,7 +632,7 @@ CREATE TABLE `item` (
 --
 
 INSERT INTO `item` (`item_id`, `item_code`, `item_name`) VALUES
-(4, 'item1', 'Sample Item');
+(4, 'item1', 'Pala');
 
 -- --------------------------------------------------------
 
@@ -604,6 +722,14 @@ CREATE TABLE `shift` (
   `shift_name` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `shift`
+--
+
+INSERT INTO `shift` (`shift_id`, `shift_name`) VALUES
+(1, 'Shift 1'),
+(2, 'Shift 2');
+
 -- --------------------------------------------------------
 
 --
@@ -637,6 +763,14 @@ CREATE TABLE `trip_ticket` (
   `status` int(12) NOT NULL,
   `remarks` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `trip_ticket`
+--
+
+INSERT INTO `trip_ticket` (`trip_ticket_id`, `trip_ticket_code`, `dispatch_time`, `dispatch_date`, `shift_id`, `equipment_id`, `lunch_box_id`, `geofence_id`, `employee_id`, `user_id`, `status`, `remarks`) VALUES
+(1, '0001231231', '1:30-3:30', '2017-02-02', 1, 1, 1, 4, 3, 1, 0, NULL),
+(2, '843849234', '1:30-3:30 PM', '2017-02-14', 2, 2, 1, 6, 3, 1, 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -678,8 +812,8 @@ CREATE TABLE `type_establishment` (
 --
 
 INSERT INTO `type_establishment` (`type_est_id`, `type_est_name`) VALUES
-(3, 'sample establishment'),
-(4, 'establisment 21'),
+(3, 'subdivisions/brgy'),
+(4, 'supermarket'),
 (5, 'xyz hospital');
 
 -- --------------------------------------------------------
@@ -770,11 +904,25 @@ ALTER TABLE `department`
   ADD PRIMARY KEY (`department_id`);
 
 --
+-- Indexes for table `driver`
+--
+ALTER TABLE `driver`
+  ADD PRIMARY KEY (`driver_id`),
+  ADD KEY `employee_id` (`employee_id`);
+
+--
+-- Indexes for table `driver_equipment`
+--
+ALTER TABLE `driver_equipment`
+  ADD PRIMARY KEY (`driver_equipment_id`);
+
+--
 -- Indexes for table `driver_paleros`
 --
 ALTER TABLE `driver_paleros`
   ADD PRIMARY KEY (`driver_paleros_id`),
-  ADD KEY `employee_id` (`employee_id`);
+  ADD KEY `employee_id` (`employee_id`),
+  ADD KEY `driver_id` (`driver_id`);
 
 --
 -- Indexes for table `employee_address_contact`
@@ -994,32 +1142,42 @@ ALTER TABLE `violation`
 -- AUTO_INCREMENT for table `complaint`
 --
 ALTER TABLE `complaint`
-  MODIFY `complaint_id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `complaint_id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `complaint_dispatcher`
 --
 ALTER TABLE `complaint_dispatcher`
-  MODIFY `complaint_dispatcher_id` int(12) NOT NULL AUTO_INCREMENT;
+  MODIFY `complaint_dispatcher_id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `complaint_it`
 --
 ALTER TABLE `complaint_it`
-  MODIFY `complaint_it_id` int(12) NOT NULL AUTO_INCREMENT;
+  MODIFY `complaint_it_id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `department`
 --
 ALTER TABLE `department`
   MODIFY `department_id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2072;
 --
+-- AUTO_INCREMENT for table `driver`
+--
+ALTER TABLE `driver`
+  MODIFY `driver_id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `driver_equipment`
+--
+ALTER TABLE `driver_equipment`
+  MODIFY `driver_equipment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
 -- AUTO_INCREMENT for table `driver_paleros`
 --
 ALTER TABLE `driver_paleros`
-  MODIFY `driver_paleros_id` int(12) NOT NULL AUTO_INCREMENT;
+  MODIFY `driver_paleros_id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `employee_address_contact`
 --
 ALTER TABLE `employee_address_contact`
-  MODIFY `employee_contact_id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `employee_contact_id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `employee_club`
 --
@@ -1034,7 +1192,7 @@ ALTER TABLE `employee_education`
 -- AUTO_INCREMENT for table `employee_employment_status`
 --
 ALTER TABLE `employee_employment_status`
-  MODIFY `employment_status_id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `employment_status_id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `employee_equipmet`
 --
@@ -1044,17 +1202,17 @@ ALTER TABLE `employee_equipmet`
 -- AUTO_INCREMENT for table `employee_family`
 --
 ALTER TABLE `employee_family`
-  MODIFY `employee_family_id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `employee_family_id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `employee_government_issued_number`
 --
 ALTER TABLE `employee_government_issued_number`
-  MODIFY `govt_issued_id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `govt_issued_id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `employee_information`
 --
 ALTER TABLE `employee_information`
-  MODIFY `employee_id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `employee_id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `employee_license`
 --
@@ -1089,7 +1247,7 @@ ALTER TABLE `employment_status`
 -- AUTO_INCREMENT for table `equipment`
 --
 ALTER TABLE `equipment`
-  MODIFY `equipment_id` int(12) NOT NULL AUTO_INCREMENT;
+  MODIFY `equipment_id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `gadget`
 --
@@ -1124,7 +1282,7 @@ ALTER TABLE `position`
 -- AUTO_INCREMENT for table `shift`
 --
 ALTER TABLE `shift`
-  MODIFY `shift_id` int(12) NOT NULL AUTO_INCREMENT;
+  MODIFY `shift_id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `supplier`
 --
@@ -1134,7 +1292,7 @@ ALTER TABLE `supplier`
 -- AUTO_INCREMENT for table `trip_ticket`
 --
 ALTER TABLE `trip_ticket`
-  MODIFY `trip_ticket_id` int(12) NOT NULL AUTO_INCREMENT;
+  MODIFY `trip_ticket_id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `trip_ticket_item`
 --

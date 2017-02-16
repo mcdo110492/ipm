@@ -36,7 +36,7 @@
 
 				}
 
-				getEmployee();
+			
 				function getEmployee ()
 				{
 					$scope.promise = api.employee.get(vm.query,success).$promise;

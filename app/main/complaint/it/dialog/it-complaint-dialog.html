@@ -1,0 +1,84 @@
+
+<md-dialog add-item-dialog class="event-form-dialog">
+  <md-dialog-content class="md-dialog-content">
+    
+    <h2 class="md-title">Take Action for Complaint #: {{ddcvm.data.complaint_no}}</h2>
+  
+  
+    <form name="itemForm" novalidate>
+      <div layout="row">
+        <md-input-container flex>
+          <label>Details</label>
+          <textarea name="details" ng-model="ddcvm.data.details" disabled rows="3"></textarea>
+          <div ng-messages="itemForm.details.$error" ng-show="itemForm.details.$touched" role="alert">
+              <div ng-message="required">
+                <span>This is required.</span>
+              </div>
+          </div>
+        </md-input-container>
+      </div>
+      <div layout="row">
+        <md-input-container flex>
+          <label>Location</label>
+          <textarea name="location" ng-model="ddcvm.data.location" disabled rows="3"></textarea>
+          <div ng-messages="itemForm.location.$error" ng-show="itemForm.location.$touched" role="alert">
+              <div ng-message="required">
+                <span>This is required.</span>
+              </div>
+          </div>
+        </md-input-container>
+      </div>
+
+      <div layout="row">
+        <md-autocomplete
+            flex required
+            md-no-cache="true"
+            md-selected-item="ddcvm.geofences"
+            md-search-text="ddcvm.searchRoutes"
+            md-items="route in ddcvm.querySearchRoutes(ddcvm.searchRoutes)"
+            md-item-text="route.route_code"
+            md-selected-item-change="ddcvm.selectGeofence(route)"
+            md-min-length="1"
+            placeholder="Geofence/Routes #"
+            md-floating-label="Geofence/Routes #"
+            md-menu-class="autocomplete-custom-template"
+            md-autoselect="true"
+            md-input-name="geofence_id"
+            md-delay="300"
+            md-clear-button="true"
+            md-require-match
+            >
+            <md-item-template>
+              <span class="item-title">
+               Route #:  <strong>{{route.route_code}} </strong>
+              </span>
+              <span class="item-metadata">
+                <span>
+                  Brgy: <strong> {{route.brgy}}</strong>
+                </span>
+                <br>
+                <span>
+                  Location: <strong> {{route.location}}</strong>
+                </span>
+                <br>
+                <span>
+                  Sector: <strong> {{route.sector}}</strong>
+                </span>
+              </span>
+            </md-item-template>
+             <div ng-messages="itemForm.geofence_id.$error" ng-if="itemForm.geofence_id.$touched">
+              <div ng-message="required">This is required.</div>
+              <div ng-message="md-require-match">Please select an existing route or search by route #</div>
+            </div>
+        </md-autocomplete>
+      </div>
+
+    </form>
+    
+  </md-dialog-content>
+
+  <md-dialog-actions>
+    <md-button class="md-primary md-raised" ng-click="ddcvm.save()" ng-disabled="itemForm.$invalid">Save</md-button>
+    <md-button class="md-raised md-warn" ng-click="ddcvm.closeDialog()">Cancel</md-button>
+  </md-dialog-actions>
+</md-dialog>

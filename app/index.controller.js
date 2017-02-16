@@ -136,7 +136,7 @@
             title : "DRIVER' S PALEROS ",
             icon : 'icon-book',
             weight: 2,
-            state:'app.driver-paleros'
+            state:'app.drivers-paleros'
         });
 
         msNavigationService.saveItem('dispatch.dispatching', {
@@ -151,6 +151,13 @@
             icon : 'icon-bullhorn',
             weight: 4,
             state:'app.dispatch-complaint'
+        });
+        
+         msNavigationService.saveItem('dispatch.dispatch-evaluation', {
+            title : 'DISPATCH EVALUATION',
+            icon : 'icon-file',
+            weight: 4,
+            state:'app.dispatch-evaluation'
         });
 
         msNavigationService.saveItem('warehouse', {

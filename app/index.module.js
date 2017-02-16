@@ -9,10 +9,8 @@
         .module('fuse', [
 
             // Common 3rd Party Dependencies
-            'ngMap',
             'textAngular',
             'xeditable',
-            'datatables',
             'md.data.table',
             'toaster',
             'mdPickers',
@@ -31,6 +29,7 @@
             'app.violation',
             'app.geofence',
             'app.employee-information',
+            'app.shift',
             // Navigation
             'app.navigation',
 
@@ -43,7 +42,11 @@
             'app.dispatching',
             'app.equipment',
             'app.gadget',
-            'app.lunch-box'
+            'app.lunch-box',
+            'app.dispatch-evaluation',
+            'app.driver-equipment',
+            'app.drivers-paleros'
+
 
 
 

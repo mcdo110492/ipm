@@ -201,6 +201,8 @@
          api.establishment = $resource(api.baseUrl+'establishment/establishment/:id', null, {'update':{'method':'PUT'}});
 
          api.complaint = $resource(api.baseUrl+'complaint/complaint/:id', null, {'update':{'method':'PUT'}});
+         api.complaint_it = $resource(api.baseUrl+'complaint/complaint_it/:id', null, {'update':{'method':'PUT'}});
+         api.complaint_dispatch = $resource(api.baseUrl+'complaint/complaint_dispatch/:id', null, {'update':{'method':'PUT'}});
 
          api.item = $resource(api.baseUrl+'item/item/:id', null, {'update':{'method':'PUT'}});
 
@@ -250,10 +252,21 @@
          api.equipment = $resource(api.baseUrl+'equipment/equipment/:id', null, {'update':{'method':'PUT'}});
          //for gadgets
          api.gadget = $resource(api.baseUrl+'gadget/gadget/:id', null, {'update':{'method':'PUT'}});
+         api.gadget_status = $resource(api.baseUrl+'gadget/gadget_status/:id', null, {'update':{'method':'PUT'}});
          //for trip ticket
          api.dispatching = $resource(api.baseUrl+'dispatching/dispatching/:id', null, {'update':{'method':'PUT'}});
          //for trip ticket details
          api.dispatching_info = $resource(api.baseUrl+'dispatching/dispatchingInfo/:id', null, {'update':{'method':'PUT'}});
+          //for shift
+         api.shift = $resource(api.baseUrl+'shift/shift/:id', null, {'update':{'method':'PUT'}});
+         //for evaluation
+         api.dispatch_evaluation = $resource(api.baseUrl+'evaluation/evaluation/:id', null, {'update':{'method':'PUT'}});
+        //for driver-equipment
+         api.driver_equipment = $resource(api.baseUrl+'driver_equipment/driver_equipment/:id', null, {'update':{'method':'PUT'}});
+
+         api.drivers_paleros = $resource(api.baseUrl+'drivers_paleros/drivers_paleros/:id', null, {'update':{'method':'PUT'}});
+         api.position_employees = $resource(api.baseUrl+'drivers_paleros/employees/:id', null, {'update':{'method':'PUT'}});
+         api.paleros            = $resource(api.baseUrl+'drivers_paleros/paleros/:id',null,{'update':{'method':'PUT'}});
 
          /** /Kay MAk*/
         /*

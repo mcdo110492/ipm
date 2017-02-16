@@ -73,6 +73,7 @@
 			$data['gadget_name']   	 	 = $this->post('gadget_name');
 			$data['gadget_model']   	 = $this->post('gadget_model');
 			$data['gadget_type']   	 	 = $this->post('gadget_type');
+			$data['gadget_status']   	 = 1;
 			
 
 			$ins = $this->main->add_data($this->table,$data);
@@ -88,6 +89,27 @@
 			$data[$fieldname]		 = $value; 
 			$where 					 = array('gadget_id'=>$id);
 			$upd = $this->main->update_data($this->table,$where,$data);
+
+			if($upd)
+			{
+				$response = array('stat'=>200,'msg'=>'Success.');
+			}
+			else
+			{
+				$response = array('stat'=>500,'msg'=>'Something went wrong..');
+			}
+
+			$this->response($response);
+		}
+
+		public function gadget_status_post()
+		{
+			$data['gadget_status']		= $this->post('gadget_status');
+			$id 						= $this->post('gadget_id');
+			$where 						= array('gadget_id'=>$id);
+			$table 						= $this->table;
+
+			$upd = $this->main->update_data($table,$where,$data);
 
 			if($upd)
 			{

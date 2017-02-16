@@ -68,6 +68,13 @@
 
 		}
 
+		public function employeeNoCheck_post()
+		{
+			$employee_no 		= $this->post('value');
+			$get 				= $this->employee->employeeNoCheck($employee_no);
+			$this->response($get);
+		}
+
 		public function employee_post()
 		{
 			$info['firstname']				= $this->post('firstname');

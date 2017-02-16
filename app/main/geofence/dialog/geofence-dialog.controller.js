@@ -18,7 +18,8 @@
 						location:'',
 						route_file:'',
 						geofence_id:'',
-						sector:''
+						sector:'',
+						route_file_name:''
 					};
 
 					var uploader = vm.uploader = new FileUploader({
@@ -81,7 +82,8 @@
 								location:data.location,
 								route_file:data.route_file,
 								geofence_id:data.geofence_id,
-								sector:data.sector
+								sector:data.sector,
+								route_file_name:data.route_file_name
 							};
 			        	}
 			        }

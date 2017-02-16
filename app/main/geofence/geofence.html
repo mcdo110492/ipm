@@ -41,7 +41,8 @@
                         <th md-column>Route Code</th>
                         <th md-column><span>Barangay</span></th>
                         <th md-column><span>Location</span></th>
-                         <th md-column><span>Sector</span></th>
+                        <th md-column><span>Sector</span></th>
+                        <th md-column><span>Route File Name</span></th>
                         <th md-column><span>Routes</span></th>
                         <th md-column><span>Status</span></th>
                         <th md-column><span>Actions</span></th>
@@ -62,7 +63,10 @@
                             {{geofence.sector}}
                         </td>
                         <td md-cell>
-                            <img ng-src="http://localhost/ipmrepository/routes/{{geofence.route_file}}" alt="Cant Find File Image" ng-click="vm.OpenMap($event,geofence)" style="width:100px;height:100px">
+                            {{geofence.route_file_name}}
+                        </td>
+                        <td md-cell>
+                            <img ng-src="http://ipm.pillarsweb.com/ipmrepository/routes/{{geofence.route_file}}" alt="Cant Find File Image" ng-click="vm.OpenMap($event,geofence)" style="width:100px;height:100px">
                         </td>
                         <td md-cell>
                             <md-button class="md-raised md-warn" ng-click="vm.changeStatus(geofence.geofence_id,2)"  aria-label="EDIT Status Pending" ng-show="geofence.status == 1" >PENDING</md-button>

@@ -5,7 +5,7 @@
 			.controller('GadgetController',GadgetController);
 
 			/** @ngInject */
-			function GadgetController ($scope,api,toaster,PluginConfig,$filter,$q)
+			function GadgetController ($scope,api,toaster,PluginConfig,$filter,$q,LoaderService)
 			{
 				var vm = this;
 				var bookmark;
@@ -16,6 +16,7 @@
 				vm.checkData  = checkData;
 				vm.OpenAddDialog = OpenAddDialog;
 				vm.save         = save;
+				vm.changeStatus = changeStatus;
 				vm.query = {
 					order:'order',
 					limit: 5,
@@ -114,6 +115,19 @@
 				    }
 				   
    
+				}
+
+				function changeStatus(id,status)
+				{
+					LoaderService.loaderShow();
+					var datastring = {gadget_id:id,gadget_status:status};
+					api.gadget_status.save(datastring,success);
+					function success(r)
+					{
+						LoaderService.loaderHide();
+						getgadgets();
+						
+					}
 				}
 
 				$scope.$watch('vm.query.filter', function (newValue, oldValue) {

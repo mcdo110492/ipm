@@ -13,43 +13,43 @@
 						trip_ticket_code:'',
 						dispatch_time:'',
 						dispatch_date:new Date(),
-						shift:'',
-						item_id:'',
+						shift_id:'',
+						lunch_box_id:'',
 						equipment_id:'',
-						gadget_id:'',
 						geofence_id:'',
-						driver:'',
-						garbage_collectors:'',
-						dispatcher:'',
+						employee_id:'',
+					
 						
 					};
 
 					
-					vm.items = [];
+		
 					vm.equipments = [];
 					vm.gadgets = [];
 					vm.geofences = [];
 					vm.employees = [];
+					vm.shifts = [];
 					vm.closeDialog = closeDialog;
 					
 					vm.save 	   = save;
 
-					loadItems();
-					function loadItems ()
+					
+					loadShifts();
+					function loadShifts ()
 					{
 						var query2 = {
 							order:'order',
 							limit: 5,
 							page: 1,
 							filter:'All',
-							field:'item_id'
+							field:'shift_id'
 						};
 
-						api.item.get(query2,success);
+						api.shift.get(query2,success);
 
 						function success(r)
 						{
-							vm.items = r.data;
+							vm.shifts = r.data;
 						}
 					}
 
@@ -71,25 +71,7 @@
 							vm.equipments = r.data;
 						}
 					}
-					loadGadgets();
-					function loadGadgets ()
-					{
-						var query2 = {
-							order:'order',
-							limit: 5,
-							page: 1,
-							filter:'All',
-							field:'gadget_id'
-						};
-
-						api.gadget.get(query2,success);
-
-						function success(r)
-						{
-							vm.gadgets = r.data;
-						}
-					}
-
+					
 					loadGeofences();
 					function loadGeofences ()
 					{
@@ -125,6 +107,25 @@
 						function success(r)
 						{
 							vm.employees = r.data;
+						}
+					}
+
+					loadLunchboxes();
+					function loadLunchboxes ()
+					{
+						var query2 = {
+							order:'order',
+							limit: 5,
+							page: 1,
+							filter:'All',
+							field:'lunch_box_id'
+						};
+
+						api.lunchbox.get(query2,success);
+
+						function success(r)
+						{
+							vm.lunchboxes = r.data;
 						}
 					}
 

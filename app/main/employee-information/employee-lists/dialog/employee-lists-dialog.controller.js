@@ -18,6 +18,8 @@
 					vm.getPosition = getPosition;
 					vm.save 	= save;
 
+					vm.urlCheck 		= api.baseUrl+'employee/employeeNoCheck';
+
 					function closeDialog ()
 					{
 						PluginConfig.CloseDialog();
